@@ -16,6 +16,8 @@ spec:
         - image: mysql/mysql-server
           name: mysql
           env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: passwrd
             - name: MYSQL_USER
               value: usr
             - name: MYSQL_PASSWORD
