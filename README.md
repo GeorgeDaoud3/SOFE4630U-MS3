@@ -70,7 +70,7 @@
      
    ![MS3 figure3](figures/cl3-3.jpg)      
    
-   2.To check the status of the service, use this command 
+   2. To check the status of the service, use this command 
    ```cmd 
    kubectl get service 
    ```
@@ -78,3 +78,25 @@
    ![MS3 figure4](figures/cl3-4.jpg)      
    
    It may take some time until the external IP address is changed from pending to a valid IP address. You may need to repeat the previous command.
+3. To access the MySQL using the IP address,
+   1. From the GCP console ( or any other device in which MySQL client is installed), run the following commands. Before running the command, replace the <IP-address> with the external IP obtained at the previous step. The options **-u**, **-p**, and **-h** are used to specify the **username**, **password**, and **the host IP** od the deployed server, respectively. 
+   ```cmd
+   mysql -uusr -psofe4630u -h<IP-address>
+   ```
+   2. Try to run the following SQL statements 
+   ```sql
+   use Readings; 
+   create table meterType( ID int, type varchar(50), cost float); 
+   insert into meterType values(1,'boston',100.5); 
+   insert into meterType values(2,'denver',120); 
+   insert into meterType values(3,'losang',155); 
+   select * from meterType where cost>=110; 
+   ```
+   3. Exit the MySQL CLI, by running
+   ```sql
+   exit
+   ```
+   4. (**optional**) after creating a video for submission, you can delete the deployment by using the following command (**Don’t run it right now**)
+   ```cmd
+   kubectl delete -f mysql.yaml
+   ```
