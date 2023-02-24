@@ -4,6 +4,8 @@ import time
 import random 
 import numpy as np
 import avro.schema
+import io
+from avro.io import DatumWriter, BinaryEncoder
 
 # Read arguments and configurations and initialize
 producer_conf = json.load(open('cred.json'))
@@ -49,7 +51,7 @@ while(True):
         pres = max(0, np.random.normal(profile['pres'][0], profile['pres'][1]))
         
         # create dictionary
-        msg={"modified":int(1000*time.time()), "profile_name": profile_name, "temperature": temp,"humidity": humd, "pressure":pres};
+        msg={"ID":record_key,"modified":int(1000*time.time()), "profile_name": profile_name, "temperature": temp,"humidity": humd, "pressure":pres};
         
         #randomly eliminate some measurements
         for i in range(3):
@@ -64,7 +66,7 @@ while(True):
         record_key=record_key+1;
         record_value=encode(msg);
 
-        producer.produce(topic, key=str(record_key), value=record_value, on_delivery=acked)
+        producer.produce(topic, value=record_value, on_delivery=acked)
         # p.poll() serves delivery reports (on_delivery) from previous produce() calls.
         producer.poll(0)
         time.sleep(.5)
