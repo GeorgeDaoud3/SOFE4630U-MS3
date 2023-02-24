@@ -158,3 +158,7 @@
    ![MS3 figure7](figures/cl3-9.jpg)
    4. Now, the **schema Registry** is configured, go back to the topic and choose **schema** again as in step a) and choose **Set a schema**.
    ![MS3 figure8](figures/cl3-10.jpg)
+   5. Choose **Avro** as the serialization format and copy the [following script](connectors/mysql/schema.txt) as the schema, then click **create**.
+5. Create a MySQL source connector.
+   1. Within the cluster, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
+   ![MS3 figure9](figures/cl3-11.jpg)
