@@ -272,3 +272,32 @@ In this section, a database will be imported from MySQL server and its recods wi
    3. Make sure that the three files are at the same folder. Then, run avroConsumer.py
 	
    Noth that avroConsumer.py has a function called decode that deserialize Avro objects. 
+	
+## Redis Sink Connector
+The key and value of Kafka message will be uses as key and value for Redis. 
+1. Log in to your **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
+2. Create a topic and name it **ToRedis**
+3. Create a Redis sink connector.
+   1. Within the cluster, choose **connectors**, click **Add Connector**, search for **MySQL**, and finally select **Redis Sink**
+   2. Click Next
+   3. Fill the configuration as in 
+      1. **Install Connector**:
+         * **Select or create new topics** : **ToRedis**
+      2. **Kafka credentials**: use the existing API key you have created in the first Milestone
+      3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
+         * **Redis hostname**: The Redis IP you obtained before
+         * **Redis port number**: **6379**
+         * **Redis database index**: **1**
+         * **Redis server password**: **sofe4630u**
+         * **SSL mode**: **disabled**
+      4. **Configuration**: (click show advance configurations)
+         * **Input Kafka record value format**: **Readings**
+         * **Select output record value format**: **AVRO**
+         * **Timestamp column name**: **BYTES**
+         * **Input Kafka record key format**: **String**
+      5. **Sizing**: 
+         * **Tasks**:1
+      6. Review and launch: 
+         * **Connector name**: **Kafka2Redis**
+   The previous settings configured the connector to continuously consume messages from the topic named **ToRedis**. Each the key and value of each message will be stored as a key value pairs in the Redis at database 1.
+4. To send  
