@@ -155,4 +155,6 @@
    ![MS3 figure6](figures/cl3-8.jpg)      
    2. To setup the **schema Registry**, at **Stream Governance Packages**, choose **Essentials**.
    3. Then choose **Google Cloud** as Cloud provider and **us-central1** as the Region. Then, click **Enable**
-   ![MS3 figure7](figures/cl3-9.jpg)      
+   ![MS3 figure7](figures/cl3-9.jpg)
+   4. Now, the **schema Registry** is configured, go back to the topic and choose **schema** again as in step a) and choose **Set a schema**.
+   ![MS3 figure8](figures/cl3-10.jpg)
