@@ -206,7 +206,9 @@
    4. Update **cred.json** and **smartMeter.py** as was described. Note the three files should be saved in the same folder.
    5. run smartMeter.py
 7. check that the connector is successfully processed the messages. 
+	
    ![MS3 figure12](figures/cl3-13.jpg)
+	
 8. check MYSQL database
    1. log into Mysql server
    ```cmd
@@ -224,7 +226,7 @@
    ```
    The output should look like
 	
-   ![MS3 figure12](figures/cl3-13.jpg)
+   ![MS3 figure13](figures/cl3-14.jpg)
    4. Exit from the MySQL interface
    ```sql
    exit
