@@ -112,4 +112,47 @@
    ```cmd
    kubectl get services
    ```
-   ![MS3 figure5](figures/cl3-5.jpg)      
+   ![MS3 figure5](figures/cl3-6.jpg)      
+4. To access the Redis datastorage,
+   1. You can install redis client on your machine as shown in the previous video. However, let’s install it over GCP console.
+   ```cmd
+	sudo apt-get install redis-tools
+   ```
+   **Note**: this installation in not persistent and you need to repeat it each time the session is ended.
+   2. Know let’s log in to server using the command after replacing the **<Redis-IP>** by the IP obtained in step 3. Note that **sofe4630u** is the password used 
+   ```cmd
+   redis-cli -h <Redis-IP> -a sofe4630u
+   ```
+   3. No try to run the following commands. Note, there are 16 different databases to select within redis. The first command selects the first database (0)
+   ``` redis
+   select 0
+   set var 100
+   get var
+   keys *
+   del var
+   keys *
+   ```
+   4. Finally to exit Redis command line interface, type
+   ```cmd
+   exit
+   ```
+5. To access, redis with python, 
+   1. Install its library on your local machine (or GCP console) 
+   ``` cmd
+   pip install redis
+   ```
+   2. In the cloned Github at path **/redis/code/**, there are two python files and a jpg image. 
+      * **SendImage.py**, will read the image **ontarioTech.jpg** and store it in Redis associated with a key **OntarioTech** at database 0.
+      * **ReceiveImage.py**, will read the value associated with the key **OntarioTech** from the Redis server and will save it into **received.jpg** image.
+      * You have to set the Redis Server Ip in the second line in both SendImage.py and ReceiveImage.py.
+      * Run SendImage, then check the keys in the redis server. Finally, Run ReceiveImage and check if the received.jpg image.
+## Configure Kafka Connector with MySQL sink,
+1. Watch the following video about [Kafka connect](https://youtu.be/YXgXw25E5RU).
+2. Log in to your **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
+3. As described is the first milestone, create a topic and name it **Readings**. This topic will be accessed by the connector for data.
+4.	Add a Schema to the topic to be used by the connector to create a table in MySQL database. The three following steps will be run only once to setrp schema registry and will not be repeated for any other schemas
+   1. Select **Reading** topic, choose **schema**, click **setup Schema Registry**.
+   ![MS3 figure6](figures/cl3-8.jpg)      
+   2. To setup the **schema Registry**, at **Stream Governance Packages**, choose **Essentials**.
+   3. Then choose **Google Cloud** as Cloud provider and **us-central1** as the Region. Then, click **Enable**
+   ![MS3 figure7](figures/cl3-9.jpg)      
