@@ -161,4 +161,29 @@
    5. Choose **Avro** as the serialization format and copy the [following script](connectors/mysql/schema.txt) as the schema, then click **create**.
 5. Create a MySQL source connector.
    1. Within the cluster, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
-   ![MS3 figure9](figures/cl3-11.jpg)
+   ![MS3 figure9](figures/cl3-7.jpg)
+   2. Fill the configuration as in 
+      1. **Topic selection**:
+         * **Topic name** : **Readings**
+      2. **Kafka credentials**: use the existing API key you have created in the first Milestone
+      3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
+         * **Connection host**: The MySQL IP you obtained before
+         * **Connection port**: **3306**
+         * **Connection user**: **usr**
+         * **Connection password**: **sofe4630u**
+         * **Database name**: Readings
+	SSL mode: prefer
+	
+4.	Configuration: (click show advance configurations)
+•	Input Kafka record value format: AVRO
+•	Insert mode: UPSERT
+•	Auto create table: true
+•	Auto add columns: true
+•	PK mode: record_value
+•	PK fields: ID
+•	Input Kafka record key format: string
+5.	Sizing: 
+	Tasks:1
+6.	Review and launch: 
+•	Connector name: smartMeter2MySQL
+c)	It will taske few minutes until the connector is running.
