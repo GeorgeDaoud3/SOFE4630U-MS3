@@ -124,7 +124,7 @@
    redis-cli -h <Redis-IP> -a sofe4630u
    ```
    3. No try to run the following commands. Note, there are 16 different databases to select within redis. The first command selects the first database (0)
-   ``` redis
+   ``` cmd
    select 0
    set var 100
    get var
@@ -192,5 +192,7 @@
    pip install avro
    ```
    2. Copy the schema ID
+	
    ![MS3 figure10](figures/cl3-11.jpg)
-   3. Three files are needed found at the path
+   
+    3. Three files are needed found at the path
