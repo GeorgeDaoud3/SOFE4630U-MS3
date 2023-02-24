@@ -251,7 +251,7 @@ In this section, a database will be imported from MySQL server and its recods wi
          * **Database name**: **Readings**
          * **SSL mode**: **prefer**
       4. **Configuration**: (click show advance configurations)
-	 * **Table names**: **Readings**
+         * **Table names**: **Readings**
          * **Select output record value format**: **AVRO**
          * **Timestamp column name**: **modified**
          * **Input Kafka record key format**: **string**
