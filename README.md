@@ -172,16 +172,15 @@
          * **Connection user**: **usr**
          * **Connection password**: **sofe4630u**
          * **Database name**: Readings
-	SSL mode: prefer
-	
-4.	Configuration: (click show advance configurations)
-•	Input Kafka record value format: AVRO
-•	Insert mode: UPSERT
-•	Auto create table: true
-•	Auto add columns: true
-•	PK mode: record_value
-•	PK fields: ID
-•	Input Kafka record key format: string
+         * **SSL mode**: **prefer**
+      4. **Configuration**: (click show advance configurations)
+         * **Input Kafka record value format**: AVRO
+         * Insert mode: UPSERT
+         * Auto create table: true
+         * Auto add columns: true
+         * PK mode: record_value
+         * PK fields: ID
+         * Input Kafka record key format: string
 5.	Sizing: 
 	Tasks:1
 6.	Review and launch: 
