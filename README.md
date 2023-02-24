@@ -227,6 +227,7 @@
    The output should look like
 	
    ![MS3 figure13](figures/cl3-14.jpg)
+	
    4. Exit from the MySQL interface
    ```sql
    exit
