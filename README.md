@@ -146,11 +146,11 @@
       * **ReceiveImage.py**, will read the value associated with the key **OntarioTech** from the Redis server and will save it into **received.jpg** image.
       * You have to set the Redis Server Ip in the second line in both SendImage.py and ReceiveImage.py.
       * Run SendImage, then check the keys in the redis server. Finally, Run ReceiveImage and check if the received.jpg image.
-## Configure Kafka Connector with MySQL sink,
+## Configure Kafka Connector with MySQL sink
 1. Watch the following video about [Kafka connect](https://youtu.be/YXgXw25E5RU).
 2. Log in to your **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
 3. As described is the first milestone, create a topic and name it **Readings**. This topic will be accessed by the connector for data.
-4.	Add a Schema to the topic to be used by the connector to create a table in MySQL database. The three following steps will be run only once to setrp schema registry and will not be repeated for any other schemas
+4. Add a Schema to the topic to be used by the connector to create a table in MySQL database. The three following steps will be run only once to setrp schema registry and will not be repeated for any other schemas
    1. Select **Reading** topic, choose **schema**, click **setup Schema Registry**.
    ![MS3 figure6](figures/cl3-8.jpg)      
    2. To setup the **schema Registry**, at **Stream Governance Packages**, choose **Essentials**.
@@ -159,8 +159,8 @@
    4. Now, the **schema Registry** is configured, go back to the topic and choose **schema** again as in step a) and choose **Set a schema**.
    ![MS3 figure8](figures/cl3-10.jpg)
    5. Choose **Avro** as the serialization format and copy the [following script](connectors/mysql/schema.txt) as the schema, then click **create**.
-5. Create a MySQL source connector.
-   1. Within the cluster, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
+5. Create a MySQL sink connector.
+   1. Within the cluster, click **Add Connector**, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
    ![MS3 figure9](figures/cl3-7.jpg)
    2. Fill the configuration as in 
       1. **Topic selection**:
@@ -185,6 +185,8 @@
          * **Tasks**:1
       6. Review and launch: 
          * **Connector name**: **smartMeter2MySQL**
+   
+   The previous settings configured the connector to continuously consume from **Readings** topic and deserlialize the message using Avro schema into a record. The record will be stored in the MySQL server deployed before on GKE. A table with the same name as the topic (**Readings**) will be created in the database and the data will be inserted using the field named **ID** as the primary key.
    3. It will take few minutes until the connector is running.
 6. Send data to the topic from your local machine (or GCP console)
    1. Install Avro library.
@@ -232,3 +234,41 @@
    ```sql
    exit
    ```
+## Configure Kafka Connector with MySQL source
+In this section, a database will be imported from MySQL server and its recods will be sent to Kafka Topics.
+1. Log in to your **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
+2. Create a MySQL source connector.
+   1. Within the cluster, choose **connectors**, click **Add Connector**, search for **MySQL**, and finally select **MySQL source**
+   2. Fill the configuration as in 
+      1. **Topic selection**:
+         * **Topic prefix** : **SM_**
+      2. **Kafka credentials**: use the existing API key you have created in the first Milestone
+      3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
+         * **Connection host**: The MySQL IP you obtained before
+         * **Connection port**: **3306**
+         * **Connection user**: **usr**
+         * **Connection password**: **sofe4630u**
+         * **Database name**: **Readings**
+         * **SSL mode**: **prefer**
+      4. **Configuration**: (click show advance configurations)
+	 * **Table names**: **Readings**
+         * **Select output record value format**: **AVRO**
+         * **Timestamp column name**: **modified**
+         * **Input Kafka record key format**: **string**
+      5. **Sizing**: 
+         * **Tasks**:1
+      6. Review and launch: 
+         * **Connector name**: **MySQL2Kafka**
+	
+   The previous settings configured the connector to continuously query new records from a table (or set of tables) named **Readings** from a certain MySQL database, serlialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name with a prefix (**SM_**). The Avro schema will be automatically created by the connector. **Note**, we are using the **Readings** table created in previous section to make things easier but it's not a must.
+   3. It will take few minutes until the connector is running.
+3. Check that a topic with the name SM_Readings is created and there are messages already received in the topic. 
+4. To consume the messages, we will use three files; avroConsumer.py, cred.json, schema2.txt in the path **connectors/mysql/** at the GitHub repository.
+   1. you should have copy the schema of the generated topic (**SM_Readings**), paste it into schema2.txt.
+	
+   ![MS3 figure9](figures/cl3-15.jpg)
+	
+   2. use the same cred.json, you have updated in the previous section.
+   3. Make sure that the three files are at the same folder. Then, run avroConsumer.py
+	
+   Noth that avroConsumer.py has a function called decode that deserialize Avro objects. 
