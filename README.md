@@ -174,15 +174,23 @@
          * **Database name**: Readings
          * **SSL mode**: **prefer**
       4. **Configuration**: (click show advance configurations)
-         * **Input Kafka record value format**: AVRO
-         * Insert mode: UPSERT
-         * Auto create table: true
-         * Auto add columns: true
-         * PK mode: record_value
-         * PK fields: ID
-         * Input Kafka record key format: string
-5.	Sizing: 
-	Tasks:1
-6.	Review and launch: 
-•	Connector name: smartMeter2MySQL
-c)	It will taske few minutes until the connector is running.
+         * **Input Kafka record value format**: **AVRO**
+         * **Insert mode**: **UPSERT**
+         * **Auto create table**: **true**
+         * **Auto add columns**: **true**
+         * **PK mode**: **record_value**
+         * **PK fields**: **ID**
+         * **Input Kafka record key format**: **string**
+      5. **Sizing**: 
+         * **Tasks**:1
+      6. Review and launch: 
+         * **Connector name**: **smartMeter2MySQL**
+   3. It will take few minutes until the connector is running.
+6. Send data to the topic from your local machine (or GCP console)
+   1. Install Avro library.
+   ```cmd
+   pip install avro
+   ```
+   2. Copy the schema ID
+   ![MS3 figure10](figures/cl3-11.jpg)
+   3. Three files are needed found at the path
