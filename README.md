@@ -101,9 +101,7 @@
    exit
    ```
    4. (**optional**) after creating a video for submission, you can delete the deployment by using the following command (**Don’t run it right now**)
-   ```cmd
-   kubectl delete -f mysql.yaml
-   ```
+service
    
 ## Deploy Redis using GKE:
 1. Watch the first 7:45 minutes in the following video to get familiar with [redis commands](https://youtu.be/jgpVdJB2sKQ).  
