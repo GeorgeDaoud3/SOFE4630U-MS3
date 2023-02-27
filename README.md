@@ -100,6 +100,7 @@
    ```cmd
    kubectl delete -f mysql.yaml
    ```
+
 ## Deploy Redis using GKE:
 1. Watch the first 7:45 minutes in the following video to get familiar with [redis commands](https://youtu.be/jgpVdJB2sKQ).  
 2. Both the deployment and the service are included in the same file. To deploy the file tp GKE, run the following commads 
