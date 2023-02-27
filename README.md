@@ -120,7 +120,7 @@
    ```cmd
 	sudo apt-get install redis-tools
    ```
-   **Note**: this installation in not persistent and you need to repeat it each time the session is ended.
+      **Note**: this installation in not persistent and you need to repeat it each time the session is ended.
    2. Know let’s log in to server using the command after replacing the **\<Redis-IP\>** by the IP obtained in step 3. Note that **sofe4630u** is the password  
    ```cmd
    redis-cli -h <Redis-IP> -a sofe4630u
