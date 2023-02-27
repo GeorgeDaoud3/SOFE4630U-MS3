@@ -101,6 +101,7 @@
    ```cmd
    kubectl delete -f mysql.yaml
    ```
+   
 ## Deploy Redis using GKE:
 1. Watch the first 7:45 minutes in the following video to get familiar with [redis commands](https://youtu.be/jgpVdJB2sKQ).  
 2. Both the deployment and the service are included in the same file. To deploy the file tp GKE, run the following commads 
@@ -188,7 +189,7 @@
       6. Review and launch: 
          * **Connector name**: **smartMeter2MySQL**
    
-   The previous settings configured the connector to continuously consume from **Readings** topic and deserlialize the message using Avro schema into a record. The record will be stored in the MySQL server deployed before on GKE. A table with the same name as the topic (**Readings**) will be created in the database and the data will be inserted using the field named **ID** as the primary key.
+            The previous settings configured the connector to continuously consume from **Readings** topic and deserlialize the message using Avro schema into a record. The record will be stored in the MySQL server deployed before on GKE. A table with the same name as the topic (**Readings**) will be created in the database and the data will be inserted using the field named **ID** as the primary key.
    3. It will take few minutes until the connector is running.
 6. Send data to the topic from your local machine (or GCP console)
    1. Install Avro library.
