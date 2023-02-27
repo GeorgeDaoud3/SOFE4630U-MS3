@@ -120,7 +120,7 @@
 	sudo apt-get install redis-tools
    ```
    **Note**: this installation in not persistent and you need to repeat it each time the session is ended.
-   2. Know let’s log in to server using the command after replacing the **<Redis-IP>** by the IP obtained in step 3. Note that **sofe4630u** is the password used 
+   2. Know let’s log in to server using the command after replacing the **\<Redis-IP\>** by the IP obtained in step 3. Note that **sofe4630u** is the password  
    ```cmd
    redis-cli -h <Redis-IP> -a sofe4630u
    ```
@@ -137,7 +137,7 @@
    ```cmd
    exit
    ```
-5. To access, redis with python, 
+5. To access, redis with python,
    1. Install its library on your local machine (or GCP console) 
    ``` cmd
    pip install redis
@@ -147,6 +147,7 @@
       * **ReceiveImage.py**, will read the value associated with the key **OntarioTech** from the Redis server and will save it into **received.jpg** image.
       * You have to set the Redis Server Ip in the second line in both SendImage.py and ReceiveImage.py.
       * Run SendImage, then check the keys in the redis server. Finally, Run ReceiveImage and check if the received.jpg image.
+
 ## Configure Kafka Connector with MySQL sink
 1. Watch the following video about [Kafka connect](https://youtu.be/YXgXw25E5RU).
 2. Log in to your **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
@@ -199,10 +200,10 @@
    ![MS3 figure10](figures/cl3-11.jpg)
 	
    3. Three files are needed found at the path /connectors/mysql/ in the GitHub repository
-   * **cred.json**: you have to edit it and specify the **Bootstrap server**, the **API key**, and the **API secret** of the Kafka cluster as you did in the first milestone.
-   * **schema.txt**: has the schema of the topic and will be accessed by the Avro library to serialize each record before sending it to the topic. Don't change its content.
-   * **smartMeter.py**: will use **cred.json** to access the Kafka cluster and **schema.txt** to serialize records and send them as messages to be sent to the Reading topics.
-      * You have to **schemaID** at line 12. 
+      * **cred.json**: you have to edit it and specify the **Bootstrap server**, the **API key**, and the **API secret** of the Kafka cluster as you did in the first milestone.
+      * **schema.txt**: has the schema of the topic and will be accessed by the Avro library to serialize each record before sending it to the topic. Don't change its content.
+      * **smartMeter.py**: will use **cred.json** to access the Kafka cluster and **schema.txt** to serialize records and send them as messages to be sent to the Reading topics.
+      * You have to update the **schemaID** at line 12. 
       * A new function called **encode** is defined that will encode each record in Avro format.
       * Each record has a new field called **ID** that will be used as a primary key by the connector.
       ![MS3 figure11](figures/cl3-12 .jpg)
