@@ -267,18 +267,18 @@ In this section, a database will be imported from MySQL server and its recods wi
       6. Review and launch: 
          * **Connector name**: **MySQL2Kafka**
 	
-   The previous settings configured the connector to continuously query new records from a table (or set of tables) named **Readings** from a certain MySQL database, serlialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name with a prefix (**SM_**). The Avro schema will be automatically created by the connector. **Note**, we are using the **Readings** table created in previous section to make things easier but it's not a must.
+            The previous settings configured the connector to continuously query new records from a table (or set of tables) named **Readings** from a certain MySQL database, serlialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name with a prefix (**SM_**). The Avro schema will be automatically created by the connector. **Note**, we are using the **Readings** table created in previous section to make things easier but it's not a must.
    3. It will take few minutes until the connector is running.
 3. Check that a topic with the name SM_Readings is created and there are messages already received in the topic. 
 4. To consume the messages, we will use three files; avroConsumer.py, cred.json, schema2.txt in the path **connectors/mysql/** at the GitHub repository.
    1. you should have copy the schema of the generated topic (**SM_Readings**), paste it into schema2.txt.
 	
-   ![MS3 figure9](figures/cl3-15.jpg)
+      ![MS3 figure9](figures/cl3-15.jpg)
 	
    2. use the same cred.json, you have updated in the previous section.
    3. Make sure that the three files are at the same folder. Then, run avroConsumer.py
 	
-   Noth that avroConsumer.py has a function called decode that deserialize Avro objects. 
+      Noth that avroConsumer.py has a function called decode that deserialize Avro objects. 
 	
 ## Redis Sink Connector
 The key and value of Kafka message will be uses as key and value for Redis. 
@@ -306,7 +306,7 @@ The key and value of Kafka message will be uses as key and value for Redis.
          * **Tasks**:1
       6. Review and launch: 
          * **Connector name**: **Kafka2Redis**
-   The previous settings configured the connector to continuously consume messages from the topic named **ToRedis**. Each the key and value of each message will be stored as a key value pairs in the Redis at database 1.
+            The previous settings configured the connector to continuously consume messages from the topic named **ToRedis**. Each the key and value of each message will be stored as a key value pairs in the Redis at database 1.
 4. To send an image (as an example) to the kafka topic, we will use files from the GitHub repository at the path /connectors/Redis/
    * cred.json: has to be updated as described before
    * ontarioTech.jpg: the image to be send to the kafka topic
