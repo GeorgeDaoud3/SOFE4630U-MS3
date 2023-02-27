@@ -198,7 +198,7 @@
    ```
    2. Copy the schema ID
 	
-   ![MS3 figure10](figures/cl3-11.jpg)
+      ![MS3 figure10](figures/cl3-11.jpg)
 	
    3. Three files are needed found at the path /connectors/mysql/ in the GitHub repository
       * **cred.json**: you have to edit it and specify the **Bootstrap server**, the **API key**, and the **API secret** of the Kafka cluster as you did in the first milestone.
@@ -207,7 +207,7 @@
       * You have to update the **schemaID** at line 12. 
       * A new function called **encode** is defined that will encode each record in Avro format.
       * Each record has a new field called **ID** that will be used as a primary key by the connector.
-      ![MS3 figure11](figures/cl3-12 .jpg)
+         ![MS3 figure11](figures/cl3-12 .jpg)
    4. Update **cred.json** and **smartMeter.py** as was described. Note the three files should be saved in the same folder.
    5. run smartMeter.py
 7. check that the connector is successfully processed the messages. 
@@ -223,7 +223,7 @@
    ```sql
    select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA='Readings';
    ```
-   as the connector will create a table with the same name as the topic, a table with the name **Readings** should be returned by the previous statement as well as **meterType** table created before.
+      as the connector will create a table with the same name as the topic, a table with the name **Readings** should be returned by the previous statement as well as **meterType** table created before.
    3. query the values in the table
    ```sql
    Use Readings;
