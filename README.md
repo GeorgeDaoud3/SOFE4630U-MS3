@@ -16,7 +16,7 @@
    ```
    2. Enable GKE by searching for **Kubernetes Engine**, select **Kubernetes Engine API**, click **Enable**. 
    
-   ![MS3 figure1](figures/cl3-1.jpg)
+      ![MS3 figure1](figures/cl3-1.jpg)
    
    3. Wait until the API is enabled then, create a three-nodes cluster on GKE called **sofe4630u**. 
    ```cmd
@@ -47,7 +47,7 @@
       *	**Lines 19-24**: define image-dependent environment variables that defines username/password (**usr/sofe4630u**) , and a schema (**Readings**).
       *	**Line 26**: defines the port number that will be used by image.
       
-   ![MS3 figure2](figures/cl3-2.jpg)      
+         ![MS3 figure2](figures/cl3-2.jpg)      
    
    3. The status of the deployment can be checked by the following command
    ```cmd 
@@ -68,16 +68,16 @@
       * **Line 8**: the port number that will be assigned to the external IP
       * **Line 10**:  the name of application that will be targeted by the service.
      
-   ![MS3 figure3](figures/cl3-3.jpg)      
+         ![MS3 figure3](figures/cl3-3.jpg)      
    
    2. To check the status of the service, use this command 
    ```cmd 
    kubectl get service 
    ```
    
-   ![MS3 figure4](figures/cl3-4.jpg)      
+      ![MS3 figure4](figures/cl3-4.jpg)      
    
-   It may take some time until the external IP address is changed from pending to a valid IP address. You may need to repeat the previous command.
+      It may take some time until the external IP address is changed from pending to a valid IP address. You may need to repeat the previous command.
 3. To access the MySQL using the IP address,
    1. From the GCP console ( or any other device in which MySQL client is installed), run the following commands. Before running the command, replace the <IP-address> with the external IP obtained at the previous step. The options **-u**, **-p**, and **-h** are used to specify the **username**, **password**, and **the host IP** od the deployed server, respectively. 
    ```cmd
