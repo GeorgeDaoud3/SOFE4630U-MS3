@@ -232,14 +232,15 @@
    Use Readings;
    select * from Readings limit 10;
    ```
-   The output should look like
+      The output should look like
 	
-   ![MS3 figure13](figures/cl3-14.jpg)
+      ![MS3 figure13](figures/cl3-14.jpg)
 	
    4. Exit from the MySQL interface
    ```sql
    exit
    ```
+
 ## Configure Kafka Connector with MySQL source
 In this section, a database will be imported from MySQL server and its recods will be sent to Kafka Topics.
 1. Log in to your **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
