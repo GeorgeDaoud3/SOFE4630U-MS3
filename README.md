@@ -23,7 +23,8 @@
    gcloud container clusters create sofe4630u --num-nodes=3 
    ```
    **Note**: if the authorization windows popped up, click Authorize 
-   **Note**: if you got an error that there is no available resources to create the nodes, you may need to change the default compute zone (e.g. to **us-central1-a**) 
+   **Note**: if you got an error that there is no available resources to create the nodes, you may need to change the default compute zone (e.g. to **us-central1-a** ) 
+
 ## Deploy MySQL using GKE:
 1. To deploy a pre-existed MySQL image over the GKE cluster, we will use a YAML file. A YAML file is a file containing the configuration used to set the deployment
    1. Clone the gitGub repository
@@ -79,7 +80,7 @@
    
       It may take some time until the external IP address is changed from pending to a valid IP address. You may need to repeat the previous command.
 3. To access the MySQL using the IP address,
-   1. From the GCP console ( or any other device in which MySQL client is installed), run the following commands. Before running the command, replace the <IP-address> with the external IP obtained at the previous step. The options **-u**, **-p**, and **-h** are used to specify the **username**, **password**, and **the host IP** od the deployed server, respectively. 
+   1. From the GCP console ( or any other device in which MySQL client is installed), run the following commands. Before running the command, replace the **\<IP-address\>** with the external IP obtained at the previous step. The options -u, -p**, and **-h** are used to specify the **username**, **password**, and **the host IP** od the deployed server, respectively. 
    ```cmd
    mysql -uusr -psofe4630u -h<IP-address>
    ```
@@ -100,7 +101,6 @@
    ```cmd
    kubectl delete -f mysql.yaml
    ```
-
 ## Deploy Redis using GKE:
 1. Watch the first 7:45 minutes in the following video to get familiar with [redis commands](https://youtu.be/jgpVdJB2sKQ).  
 2. Both the deployment and the service are included in the same file. To deploy the file tp GKE, run the following commads 
