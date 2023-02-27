@@ -326,9 +326,7 @@ The key and value of Kafka message will be uses as key and value for Redis.
 * Confluent Cloud Kafka supports connectors while Google Pub/Sub doesn't support them. What's the advantages and disadvantages of adding connectors to any pub/sub service?
 
 ## Design: 
-Although Google Pub/Sub doesn't support connectors, it can be implemented using Data flow or any other processing service. Update the Dataflow pipeline you implemented in the second milestone to include a paralle branch that saves the preprocessed records into a MySQL server deployed on GKE.
-
-Write to PubSub: send the measurement back to another topic
+Although Google Pub/Sub doesn't support connectors, it can be implemented using Data flow or any other processing service. Update the Dataflow pipeline you implemented in the second milestone to include a parallel branch that saves the preprocessed records into a MySQL server deployed on GKE.
 
 # Deliverables
 1. A report that includes the Discussion part and the .
