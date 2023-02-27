@@ -300,4 +300,30 @@ The key and value of Kafka message will be uses as key and value for Redis.
       6. Review and launch: 
          * **Connector name**: **Kafka2Redis**
    The previous settings configured the connector to continuously consume messages from the topic named **ToRedis**. Each the key and value of each message will be stored as a key value pairs in the Redis at database 1.
-4. To send  
+4. To send an image (as an example) to the kafka topic, we will use files from the GitHub repository at the path /connectors/Redis/
+   * cred.json: has to be updated as described before
+   * ontarioTech.jpg: the image to be send to the kafka topic
+   * produceImage.py: produce the image to kafka topic named **ToRedis** with a key **fromKafka**
+   * make sure that the three files at the same folder. then, run produceImage.py.
+5. To check that the connector works and that the key/value message is parsed and send to Redis server, check the status of the connector at Confluent Kafka.
+6. To check that the connector, ReceiveImage.py will read the bytes associated with the key from the Redis server and save as another JPG file (**recieved.jpg**).
+   * First change the IP at line 4 with the Redis IP.
+   * Run ReceiveImage.py
+   * check that recieved.jpg is created and its content is a copy of the original sent image.
+
+## Discussion: 
+* How do Kafka connectors maintain availability?
+* MySQL connector supports three serialize/deserialize methods; JSON, AVRO, and PROTOBUF. What are the advantages and disadvantages of each.
+* There are two options for **Insert mode** (**UPSERT** or **INSERT**) can be configured for MYSQL sink connector. Compare both of them and provide a test case for each of them.
+* Confluent Cloud Kafka supports connectors while Google Pub/Sub doesn't support them. What's the advantages and disadvantages of adding connectors to any pub/sub service?
+
+## Design: 
+Although Google Pub/Sub doesn't support connectors, it can be implemented using Data flow or any other processing service. Update the Dataflow pipeline you implemented in the second milestone to include a paralle branch that saves the preprocessed records into a MySQL server deployed on GKE.
+
+Write to PubSub: send the measurement back to another topic
+
+# Deliverables
+1. A report that includes the Discussion part and the .
+2. The code you implemented in the Design part.
+2. An audible video of about 5 minutes showing the connectors described. Your video should highlight the check steps.
+3. Another audible video of about 3 minutes showing the output of the design part.
