@@ -334,6 +334,8 @@ The key and value of the Kafka message will be used as the key and value for Red
 ## Design: 
 Although Google Pub/Sub doesn't support connectors, it can be implemented using Data flow or any other processing service. Update the Dataflow pipeline you implemented in the second milestone to include a parallel branch that saves the preprocessed records into a MySQL server deployed on GKE.
 
+You may find [this package](http://mohaseeb.com/beam-nuggets/beam_nuggets.html) helpful
+
 # Deliverables
 1. A report that includes the Discussion part and description of the updated pipeline.
 2. The code you implemented in the Design part.
