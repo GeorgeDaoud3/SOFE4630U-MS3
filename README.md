@@ -328,7 +328,7 @@ The key and value of the Kafka message will be used as the key and value for Red
 ## Discussion: 
 * How do Kafka connectors maintain availability?
 * MySQL connector supports three serialize/deserialize methods; JSON, AVRO, and PROTOBUF. What are the advantages and disadvantages of each.
-* There are two options for **Insert mode** (**UPSERT** or **INSERT**) can be configured for MySQL sink connector. Compare both of them and provide a test case for each of them.
+* There are two options for **Insert mode** (**UPSERT** or **INSERT**) can be configured for MySQL sink connector. Compare both of them and provide a use case for each of them.
 * Confluent Cloud Kafka supports connectors while Google Pub/Sub doesn't support them. What are the advantages and disadvantages of adding connectors to any pub/sub service?
 
 ## Design: 
