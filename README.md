@@ -1,4 +1,4 @@
-![image](https://github.com/GeorgeDaoud3/SOFE4630U-MS3/assets/98628453/053d4f14-c33b-4a77-9429-a9d2172dea52)# Milestone 3:  Data Storage and Kafka connects
+# Milestone 3:  Data Storage and Kafka connects
 
 ## Objective:
 * Get familiar with Docker images and containers.
