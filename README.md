@@ -158,22 +158,26 @@
 1. Watch the following video about [Kafka connect](https://youtu.be/YXgXw25E5RU).
 2. Log in to the **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
 3. As described in the first milestone, create a topic and name it **Readings**. This topic will be accessed by the connector for data.
-4. Add a Schema to the topic to be used by the connector to create a table in MySQL database. The three following steps will be run only once to set up the schema registry and will not be repeated for any other schemas
-   1. Select **Reading** topic. Choose **schema**. Finally, click **setup Schema Registry**.
-   
-      ![MS3 figure6](figures/cl3-8.jpg)      
+4. Add a Schema to the topic to be used by the connector to create a table in MySQL database. 
+   **Note**: you can have the schema during the topic creation. but we will asume that the topic has created without schema).
+   1. Navigate to the **Readings** topic. Then, choose the **Schema** tap. Make sure that **Value** is selected. Finally, click **Set a schema**.
+
+      ![set a schema](figures/cl3-8_v2.jpg)      
+
+   2. Choose **Avro** as the serialization format, delete the default avro schema, and copy the [following script](connectors/mysql/schema.txt) as the new schema, then click **create**.
+
+      ![avro schema](figures/cl3-9_v2.jpg)
+
+   3. The schema is describing the following fields
+      Name         | Lunch order   | Nullable      
+      ------------ | ------------- | ---------- :
+      ID           | long | medium | False   
+      profile_name | string        | False       
+      temperature  | double        | True
+      humidity     | double        | True
+      modified     | Timestamp     | False      
       
-   2. To setup the **schema Registry**, choose **Essentials** at **Stream Governance Packages**.
-   3. Then choose **Google Cloud** as the cloud provider and **us-central1** as the Region. Then, click **Enable**
-   
-      ![MS3 figure7](figures/cl3-9.jpg)
-   
-   4. Now, the **schema Registry** is configured, go back to the topic and choose **schema** again as in step a) and choose **Set a schema**.
-   
-      ![MS3 figure8](figures/cl3-10.jpg)
-   
-   5. Choose **Avro** as the serialization format and copy the [following script](connectors/mysql/schema.txt) as the schema, then click **create**.
-5. Create a MySQL sink connector.
+6. Create a MySQL sink connector.
    1. Within the cluster, click **Add Connector**, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
    ![MS3 figure9](figures/cl3-7.jpg)
    2. Fill in the configuration as in 
@@ -202,7 +206,7 @@
    
             The previous settings configured the connector to continuously consume from **Readings** topic and deserialize the message using Avro schema into a record. The record will be stored in the MySQL server deployed before on GKE. A table with the same name as the topic (**Readings**) will be created in the database and the data will be inserted using the field named **ID** as the primary key.
    3. It will take a few minutes until the connector is running.
-6. Send data to the topic from your local machine (or GCP console)
+7. Send data to the topic from your local machine (or GCP console)
    1. Install Avro library.
    ```cmd
    pip install avro
@@ -221,11 +225,11 @@
          ![MS3 figure11](figures/cl3-12 .jpg)
    4. Update **cred.json** and **smartMeter.py** as described. Note the three files should be saved in the same folder.
    5. run smartMeter.py
-7. Check that the connector is successfully processed the messages. 
+8. Check that the connector is successfully processed the messages. 
 	
    ![MS3 figure12](figures/cl3-13.jpg)
 	
-8. Check MySQL database
+9. Check MySQL database
    1. log into Mysql server
    ```cmd
    mysql -uusr -psofe4630u -h<IP-address>
