@@ -1,4 +1,4 @@
-# Milestone 3:  Data Storage and Kafka connects
+![image](https://github.com/GeorgeDaoud3/SOFE4630U-MS3/assets/98628453/053d4f14-c33b-4a77-9429-a9d2172dea52)# Milestone 3:  Data Storage and Kafka connects
 
 ## Objective:
 * Get familiar with Docker images and containers.
@@ -155,6 +155,10 @@
       * Run **SendImage.py**, then check the keys in the Redis server. Finally, Run **ReceiveImage.py** and check that the **received.jpg** image is created.
 
 ## Configure Kafka Connector with MySQL sink
+The sink connector is a Kafka service that automatically consumes from a topic(s) and stores the consumed messages in a data storage, as shown in the following figure.
+
+   ![sink connector](figures/cl3-7_v2.jpg)
+
 1. Watch the following video about [Kafka connect](https://youtu.be/YXgXw25E5RU).
 2. Log in to the **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
 3. As described in the first milestone, create a topic and name it **Readings**. This topic will be accessed by the connector for data.
@@ -257,7 +261,11 @@
       ```
 
 ## Configure Kafka Connector with MySQL source
-In this section, a database will be imported from the MySQL server and its records will be sent to Kafka Topics.
+The source connector is a Kafka service that automatically read values from a data storage and produce them into a topic, as shown in the following figure.
+
+   ![source connector](figures/cl3-15_v2.jpg)
+
+
 1. Log in to the **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
 2. Create a MySQL source connector.
    1. Within the cluster, choose **connectors**, click **Add Connector**, search for **MySQL**, and finally select **MySQL source**
