@@ -172,7 +172,7 @@
       
       | Name         | Lunch order   | Nullable |
       | ------------ | ------------- | -------- |
-      | ID           | long | medium | False    |
+      | ID           | long          | False    |
       | profile_name | string        | False    |   
       | temperature  | double        | True     |
       | humidity     | double        | True     |
