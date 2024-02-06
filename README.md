@@ -190,7 +190,7 @@ The sink connector is a Kafka service that automatically consumes from a topic(s
    2. Fill in the configuration (keep the default values if not mentioned) as in 
       1. **Topic selection**:
          * **Topic name**: **Readings**
-      2. **Kafka credentials**: use the existing API key you have created in the first Milestone ( or create a new one)
+      2. **Kafka credentials**: use the existing **API key** and **API secret** you have created in the first Milestone (or create a new one).
       3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
          * **Connection host**: The MySQL IP you obtained before
          * **Connection port**: **3306**
@@ -265,14 +265,13 @@ The source connector is a Kafka service that automatically read values from a da
 
    ![source connector](figures/cl3-15_v2.jpg)
 
-
 1. Log in to the **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
-2. Create a MySQL source connector.
+2. Create a **MySQL source** connector.
    1. Within the cluster, choose **connectors**, click **Add Connector**, search for **MySQL**, and finally select **MySQL source**
    2. Fill in the configuration as 
       1. **Topic selection**:
          * **Topic prefix**: **SM_**
-      2. **Kafka credentials**: use the existing API key you have created in the first Milestone
+      2. **Kafka credentials**: use the existing **API key** and **API secret** you have created in the first Milestone  (or create a new one).
       3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
          * **Connection host**: The MySQL IP you obtained before
          * **Connection port**: **3306**
@@ -284,13 +283,12 @@ The source connector is a Kafka service that automatically read values from a da
          * **Table names**: **Readings**
          * **Select output record value format**: **AVRO**
          * **Timestamp column name**: **modified**
-         * **Input Kafka record key format**: **string**
       5. **Sizing**: 
          * **Tasks**:1
       6. Review and launch: 
          * **Connector name**: **MySQL2Kafka**
 	
-            The previous settings configured the connector to continuously query new records from a table (or set of tables) named **Readings** from a certain MySQL database, serialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name with a prefix (**SM_**). The Avro schema will be automatically created by the connector. **Note**, we are using the **Readings** table created in the previous section to make things easier but it's not a must.
+      The previous settings configured the connector to continuously query new records from a table (or set of tables) named **Readings** from a certain MySQL database, serialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name with a prefix (**SM_**). The Avro schema will be automatically created by the connector. **Note**, we are using the **Readings** table created in the previous section to make things easier but it's not a must.
    3. It will take a few minutes until the connector is running.
 3. Check that a topic with the name SM_Readings is created and there are messages already received in the topic. 
 4. To consume the messages, we will use three files; avroConsumer.py, cred.json, schema2.txt in the path **connectors/mysql/** at the GitHub repository.
