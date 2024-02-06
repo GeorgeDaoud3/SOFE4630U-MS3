@@ -120,32 +120,32 @@
    ![MS3 figure5](figures/cl3-6.jpg)      
 4. To access the Redis datastore,
    1. You can install the Redis client on your machine as shown in the previous video. However, let’s install it over the GCP console.
-   ```cmd
-	sudo apt-get install redis-tools
-   ```
-      **Note**: this installation is not persistent and you need to repeat it each time the session is ended.
+	   ```cmd
+		sudo apt-get install redis-tools
+	   ```
+	   **Note**: this installation is not persistent and you need to repeat it each time the session is ended.
    2. Now, let’s log in to the server using the command after replacing the **\<Redis-IP\>** with the IP obtained in step 3. Note that **sofe4630u** is the password  
-   ```cmd
-   redis-cli -h <Redis-IP> -a sofe4630u
-   ```
+	   ```cmd
+	   redis-cli -h <Redis-IP> -a sofe4630u
+	   ```
    3. Now, try to run the following commands. Note, there are 16 different databases to select within Redis. The first command selects the first database (0)
-   ``` cmd
-   select 0
-   set var 100
-   get var
-   keys *
-   del var
-   keys *
-   ```
+	   ``` cmd
+	   select 0
+	   set var 100
+	   get var
+	   keys *
+	   del var
+	   keys *
+	   ```
    4. Finally to exit the command line interface, type
-   ```cmd
-   exit
-   ```
+	   ```cmd
+	   exit
+	   ```
 5. To access, Redis with python code,
    1. Install its library on your local machine (or GCP console) 
-   ``` cmd
-   pip install redis
-   ```
+	   ``` cmd
+	   pip install redis
+	   ```
    2. In the cloned Github at path **/redis/code/**, there are two python files and a jpg image. 
       * **SendImage.py**, will read the image **ontarioTech.jpg** and store it in Redis associated with a key **OntarioTech** at database 0.
       * **ReceiveImage.py**, will read the value associated with the key **OntarioTech** from the Redis server and will save it into **received.jpg** image.
