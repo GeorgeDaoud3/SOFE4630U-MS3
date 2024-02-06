@@ -101,7 +101,6 @@
    exit
    ```
    4. (**optional**) after creating a video for submission, you can delete the deployment by using the following command (**Don’t run it right now**)
-service
     ```cmd
    kubectl delete -f mysql-deploy.yaml
    kubectl delete -f mysql-service.yaml
