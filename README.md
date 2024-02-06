@@ -211,7 +211,7 @@ The sink connector is a Kafka service that automatically consumes from a topic(s
       6. Review and launch: 
          * **Connector name**: **smartMeter2MySQL**
    
-            The previous settings configured the connector to continuously consume from **Readings** topic and deserialize the message using **Avro** schema into a record. The record will be stored in the **MySQL server** deployed before on **GKE**. A table with the same name as the topic (**Readings**) will be created in the database (**Readings**) and the data will be inserted using the field named **ID** from the consumed messages (values) as the primary key.
+      The previous settings configure the connector to continuously consume from the **Readings** topic and deserialize the message using the **Avro** schema into a record. The record will be stored in the **MySQL server** deployed before on **GKE**. A table with the same name as the topic (**Readings**) will be created in the database (**Readings**), and the data will be inserted using the field named **ID** from the consumed messages (values) as the primary key.
    4. It will take a few minutes until the connector is running.
 7. Send data to the topic from your local machine (or GCP console)
    1. Install Avro library.
@@ -268,7 +268,7 @@ The source connector is a Kafka service that automatically read values from a da
 1. Log in to the **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
 2. Create a **MySQL source** connector.
    1. Within the cluster, choose **connectors**, click **Add Connector**, search for **MySQL**, and finally select **MySQL source**
-   2. Fill in the configuration as 
+   2. Fill in the configuration (keep the default values if not mentioned) as in 
       1. **Topic selection**:
          * **Topic prefix**: **SM_**
       2. **Kafka credentials**: use the existing **API key** and **API secret** you have created in the first Milestone  (or create a new one).
@@ -288,57 +288,56 @@ The source connector is a Kafka service that automatically read values from a da
       6. Review and launch: 
          * **Connector name**: **MySQL2Kafka**
 	
-      The previous settings configured the connector to continuously query new records from a table (or set of tables) named **Readings** from a certain MySQL database, serialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name with a prefix (**SM_**). The Avro schema will be automatically created by the connector. **Note**, we are using the **Readings** table created in the previous section to make things easier but it's not a must.
+      The previous settings configure the connector to continuously query new records from a table (or set of tables), namely **Readings** from a particular MySQL database (**Readings**), serialize each record as a message in Avro format, and produce the message into a Kafka topic. The Kafka topic name will be the same as the table(s) name but with a prefix (**SM_**). The connector will automatically create the Avro schema. **Note**: we are using the **Readings** table created in the previous section to make things easier, but it's not necessary.
    3. It will take a few minutes until the connector is running.
-3. Check that a topic with the name SM_Readings is created and there are messages already received in the topic. 
-4. To consume the messages, we will use three files; avroConsumer.py, cred.json, schema2.txt in the path **connectors/mysql/** at the GitHub repository.
-   1. you should copy the schema of the generated topic (**SM_Readings**), and paste it into schema2.txt.
+3. Check that a topic with the name **SM_Readings** is created and there are messages already received in the topic. 
+4. To consume the messages, we will use three files; **avroConsumer.py**, **cred.json**, **schema2.txt** in the path [connectors/mysql/](connectors/mysql/) at the GitHub repository.
+   1. you should copy the schema of the generated topic (**SM_Readings**), and paste it into **schema2.txt**.
 	
       ![MS3 figure9](figures/cl3-15.jpg)
 	
-   2. use the same cred.json, you have updated in the previous section.
-   3. Make sure that the three files are in the same folder. Then, run avroConsumer.py
+   2. use the same **cred.json**, you have updated in the previous section.
+   3. Make sure that the three files are in the same folder. Then, run **avroConsumer.py** to consume the messages from the **SM_Readings** topic.
 	
-      Noth that avroConsumer.py has a function called decode that deserializes Avro objects. 
+   Note that **avroConsumer.py** has a function called **decode** that deserializes Avro objects. 
 	
 ## Redis Sink Connector
-The key and value of the Kafka message will be used as the key and value for Redis. 
+It's like the MySQL sink connector but for Redis. The key and value of the Kafka message will be used as the key and value for Redis. 
 1. Log in to the **Confluent Kafka account** you created in the first milestone. Make sure you are still in the trial period.
 2. Create a topic and name it **ToRedis**
 3. Create a Redis sink connector.
-   1. Within the cluster, choose **connectors**, click **Add Connector**, search for **MySQL**, and finally select **Redis Sink**
+   1. Within the cluster, choose **connectors**, click **Add Connector**, search for **Redis**, and finally select **Redis Sink**
    2. Click Next
-   3. Fill in the configuration as
+   3. Fill in the configuration (keep the default values if not mentioned) as in 
       1. **Install Connector**:
          * **Select or create new topics** : **ToRedis**
-      2. **Kafka credentials**: use the existing API key you have created in the first Milestone
-      3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
+      2. **Kafka credentials**: use the existing **API key** and **API secret** you have created in the first Milestone  (or create a new one).
+      3. **Authentication**: Enter the information of the Redis server we already have deployed on GKE
          * **Redis hostname**: The Redis IP you obtained before
          * **Redis port number**: **6379**
          * **Redis database index**: **1**
          * **Redis server password**: **sofe4630u**
          * **SSL mode**: **disabled**
       4. **Configuration**: (click **show advanced configurations**)
-         * **Input Kafka record value format**: **Readings**
-         * **Select output record value format**: **AVRO**
-         * **Timestamp column name**: **BYTES**
-         * **Input Kafka record key format**: **String**
+         * **Input Kafka record value format**: **BYTES**
+         * **Input Kafka record key format**: **STRING**
       5. **Sizing**: 
          * **Tasks**:1
       6. Review and launch: 
          * **Connector name**: **Kafka2Redis**
-            The previous settings configured the connector to continuously consume messages from the topic named **ToRedis**. Each key and value of each message will be stored as a key-value pair in the Redis at database 1.
-4. To send an image (as an example) to the Kafka topic, we will use files from the GitHub repository at the path /connectors/Redis/
-   * cred.json: has to be updated as described before
-   * ontarioTech.jpg: the image to be sent to the Kafka topic
-   * produceImage.py: produce the image to a kafka topic named **ToRedis** with a key **fromKafka**
-   * make sure that the three files at the same folder. then, run produceImage.py.
+            The previous settings configure the connector to continuously consume messages from the topic named **ToRedis**. Each key and value of each message will be stored as a key-value pair in the Redis at database 1.
+4. To send an image (as an example) to the Kafka topic, we will use files from the GitHub repository at the path [/connectors/Redis/](/connectors/Redis/)
+   * **cred.json**: has to be updated as described before
+   * **ontarioTech.jpg**: the image to be sent to the Kafka topic
+   * **produceImage.py**: produces the image to a kafka topic named **ToRedis** with a key **fromKafka**
+   * make sure that the three files at the same folder. then, run **produceImage.py**.
 5. To check that the connector works and that the key/value message is parsed and sent to the Redis server, check the status of the connector at Confluent Kafka.
 6. To check that the connector, ReceiveImage.py will read the bytes associated with the key from the Redis server and save as another JPG file (**recieved.jpg**).
    * First, change the IP at line 4 with the Redis IP.
-   * Run ReceiveImage.py
-   * check that recieved.jpg is created and its content is a copy of the original sent image.
-
+   * Run **ReceiveImage.py**
+   * check that **recieved.jpg** is created and its content is a copy of the original sent image.
+The following figure summerizes the integration of the previou scripts with the connector and Redis.
+![Redis summary](figures/cl3-16_v2.jpg)
 ## Discussion: 
 * How do Kafka connectors maintain availability?
 * MySQL connector supports three serialize/deserialize methods; JSON, AVRO, and PROTOBUF. What are the advantages and disadvantages of each.
