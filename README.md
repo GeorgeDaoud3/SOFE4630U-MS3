@@ -180,17 +180,19 @@
       
 6. Create a MySQL sink connector.
    1. Within the cluster, click **Add Connector**, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
-   ![MS3 figure9](figures/cl3-7.jpg)
-   2. Fill in the configuration as in 
+
+      ![MySQL sink](figures/cl3-10_v2.jpg)
+      
+   2. Fill in the configuration (keep the default values if not mentioned) as in 
       1. **Topic selection**:
          * **Topic name**: **Readings**
-      2. **Kafka credentials**: use the existing API key you have created in the first Milestone
+      2. **Kafka credentials**: use the existing API key you have created in the first Milestone ( or create a new one)
       3. **Authentication**: Enter the information of the MySQL server we already have deployed on GKE
          * **Connection host**: The MySQL IP you obtained before
          * **Connection port**: **3306**
          * **Connection user**: **usr**
          * **Connection password**: **sofe4630u**
-         * **Database name**: Readings
+         * **Database name**: **Readings**
          * **SSL mode**: **prefer**
       4. **Configuration**: (click **show advanced configurations**)
          * **Input Kafka record value format**: **AVRO**
@@ -205,54 +207,54 @@
       6. Review and launch: 
          * **Connector name**: **smartMeter2MySQL**
    
-            The previous settings configured the connector to continuously consume from **Readings** topic and deserialize the message using Avro schema into a record. The record will be stored in the MySQL server deployed before on GKE. A table with the same name as the topic (**Readings**) will be created in the database and the data will be inserted using the field named **ID** as the primary key.
-   3. It will take a few minutes until the connector is running.
+            The previous settings configured the connector to continuously consume from **Readings** topic and deserialize the message using **Avro** schema into a record. The record will be stored in the **MySQL server** deployed before on **GKE**. A table with the same name as the topic (**Readings**) will be created in the database (**Readings**) and the data will be inserted using the field named **ID** from the consumed messages (values) as the primary key.
+   4. It will take a few minutes until the connector is running.
 7. Send data to the topic from your local machine (or GCP console)
    1. Install Avro library.
-   ```cmd
-   pip install avro
-   ```
+      ```cmd
+      pip install avro
+      ```
    2. Copy the schema ID
 	
       ![MS3 figure10](figures/cl3-11.jpg)
 	
-   3. Three files are needed found at the path /connectors/mysql/ in the GitHub repository
+   3. Three files are needed found at the path [/connectors/mysql/](/connectors/mysql/) in the GitHub repository
       * **cred.json**: you have to edit it and specify the **Bootstrap server**, the **API key**, and the **API secret** of the Kafka cluster as you did in the first milestone.
-      * **schema.txt**: has the schema of the topic and will be accessed by the Avro library to serialize each record before sending it to the topic. Don't change its content.
+      * **schema.txt**: contains the schema of the topic and will be accessed by the Avro library to serialize each record before sending it to the topic. Don't change its content.
       * **smartMeter.py**: will use **cred.json** to access the Kafka cluster and **schema.txt** to serialize records and send them as messages to be sent to the Reading topics.
       * You have to update the **schemaID** at line 12. 
       * A new function called **encode** is defined that will encode each record in Avro format.
       * Each record has a new field called **ID** that will be used as a primary key by the connector.
          ![MS3 figure11](figures/cl3-12 .jpg)
    4. Update **cred.json** and **smartMeter.py** as described. Note the three files should be saved in the same folder.
-   5. run smartMeter.py
+   5. run **smartMeter.py**
 8. Check that the connector is successfully processed the messages. 
 	
    ![MS3 figure12](figures/cl3-13.jpg)
 	
 9. Check MySQL database
    1. log into Mysql server
-   ```cmd
-   mysql -uusr -psofe4630u -h<IP-address>
-   ```
+      ```cmd
+      mysql -uusr -psofe4630u -h<IP-address>
+      ```
    2. get the list of tables in the database
-   ```sql
-   select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA='Readings';
-   ```
+      ```sql
+      select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA='Readings';
+      ```
       as the connector will create a table with the same name as the topic, a table with the name **Readings** should be returned by the previous statement as well as **meterType** table created before.
    3. query the values in the table
-   ```sql
-   Use Readings;
-   select * from Readings limit 10;
-   ```
+      ```sql
+      Use Readings;
+      select * from Readings limit 10;
+      ```
       The output should look like
 	
       ![MS3 figure13](figures/cl3-14.jpg)
 	
    4. Exit from the MySQL interface
-   ```sql
-   exit
-   ```
+      ```sql
+      exit
+      ```
 
 ## Configure Kafka Connector with MySQL source
 In this section, a database will be imported from the MySQL server and its records will be sent to Kafka Topics.
