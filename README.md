@@ -169,13 +169,14 @@
       ![avro schema](figures/cl3-9_v2.jpg)
 
    3. The schema is describing the following fields
-      Name         | Lunch order   | Nullable      
-      ------------ | ------------- | ---------- :
-      ID           | long | medium | False   
-      profile_name | string        | False       
-      temperature  | double        | True
-      humidity     | double        | True
-      modified     | Timestamp     | False      
+      
+      Name         | Lunch order   | Nullable |
+      ------------ | ------------- | -------- |
+      ID           | long | medium | False    |
+      profile_name | string        | False    |   
+      temperature  | double        | True     |
+      humidity     | double        | True     |
+      modified     | Timestamp     | False    |      
       
 6. Create a MySQL sink connector.
    1. Within the cluster, click **Add Connector**, choose **connectors**, search for **MySQL**, and finally select **MySQL sink**
