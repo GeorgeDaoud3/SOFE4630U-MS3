@@ -148,7 +148,7 @@
       ``` cmd
       pip install redis
       ```
-   2. In the cloned Github at path [/redis/code/](/redis/code/), there are two python files and a jpg image. 
+   2. In the cloned Github at path [/Redis/code/](/Redis/code/), there are two python files and a jpg image. 
       * **SendImage.py**, will read the image **ontarioTech.jpg** and store it in Redis associated with a key **OntarioTech** at database 0.
       * **ReceiveImage.py**, will read the value associated with the key **OntarioTech** from the Redis server and will save it into **received.jpg** image.
       * You have to set the Redis Server Ip in the second line in both SendImage.py and ReceiveImage.py.
