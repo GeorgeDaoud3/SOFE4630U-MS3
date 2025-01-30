@@ -46,7 +46,8 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
     pip install 'apache-beam[gcp]'
     ```
 
-   **Note**: this is a temporary installation into GCP console. When the session is expired, The GCP will be reset losing the temporary installations.
+   **Note**: this is a temporary installation into the GCP console. The GCP will be reset when the session expires, causing the temporary installations to be lost.
+   
 ## Running the wordcount Example
 1.	A set of examples is already within the Python library folder. The following command will search for the file containing wordcount examples within any subdirectory of the home directory (**~**) and print it.
 
