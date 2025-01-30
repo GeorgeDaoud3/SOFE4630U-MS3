@@ -158,7 +158,12 @@ Now, we will go through four examples of Dataflow Jobs.
     ![](images/df15.jpg)
 
 11. Go to the bucket created in step 7 and open the file(s) started by the prefix **outputs** within a folder named **result**. Download the file to read it.
-12.	In the GitHub repository, there is also an upgrade to the wordcount script. Make sure that the **PROJECT** and **BUCKET** environment variables are still existing. Then, clone the repository and run the updated script. Try to understand its function.
+
+## 2. Running the wordcount2 Example
+
+1.	In the GitHub repository, there is also an upgrade to the wordcount script under the name of (wordcount2.py)[/wordcount/wordcount2.py).
+  
+3.	Make sure that the **PROJECT** and **BUCKET** environment variables are still existing. Then, clone the repository and run the updated script. Try to understand its function.
     ```cmd 
     cd ~
     git clone https://github.com/GeorgeDaoud3/SOFE4630U-MS2.git
