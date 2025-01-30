@@ -74,12 +74,12 @@ Now, we will go through four examples of Dataflow Jobs.
               The first stage inserted after p (using the | operator) is given in line 90. It's called     Read, which runs a built-in function to read a text file. Note that the output will be a list of lines (strings) when executed. Note also that the pipeline till the first stage is saved into a Python variable named line.
     * The first stage inserted after **p** (using the **|** operator) is given in line 90. It's called **Read**, which runs a built-in function to read a text file. Note the output of this stage will be a list of lines (strings). Note also that until the first stage, the pipeline is saved into a Python variable named **line**.
     * The statements from lines 92 to 96 add three consequent stages.
-        * The first is called **Split**, which splits each line into a list of words using a custom class implemented in lines 50:63. 
-        * The second is called **PairWithOne** that converts each word into a key/value pair which the key is the word and the value is 1. This stage is used a inline function that takes a word **x** and return the tuple **(x,1)**. 
-        * The first two stages are Map operations which takes a single input and produce a single or multiple outputs.
+        * The first is called **Split**, which splits each line into a list of words using a custom class implemented in lines 50:63.
+        * The second is called **PairWithOne**, which converts each word into a key/value pair in which the key is the word and the value is 1. This stage uses an inline function that takes a word **x** and returns the tuple **(x,1)**. 
+        * The first two stages are Map operations which take a single input and produce a single or multiple outputs.
         * The third stage is a Reduce stage that will combine tuples having the same key (word) and then apply the **sum** function over the values to generate a new tuple of a word as a key and the count as the value. 
     * Line 102 append another stage to the pipeline. The stage implements another Map operation that executes a customized function defined in lines 99 and 100 to convert each tuple to a string.
-    * A final stage is used to save the output (list of strings) to a text file.
+    * A final stage saves the output (list of strings) to a text file.
 
     ![](images/df9.jpg)
 
