@@ -82,8 +82,8 @@ Now, we will go through four examples of Dataflow Jobs.
     * A final stage saves the output (list of strings) to a text file.
 
     ![](images/df9.jpg)
-
-5.	To check the code, we can execute it locally (at the GCP console) first be running the following command. As no input option is given, it will use the default value while the output will be saved in the home directory (current directory) with a prefix **outputs**
+5.	To check the code, we can execute it locally (at the GCP console) by running the following command. As no input option is given, it will use the default value while the output will be saved in the home directory (current directory) with a prefix outputs.
+5.	To check the code, we can execute it locally (at the GCP console) by running the following command. As no input option is given, it will use the default value while the output will be saved in the home directory (current directory) with a prefix **outputs**
     
     ``` cmd
     python wordcount.py --output outputs
@@ -100,15 +100,17 @@ Now, we will go through four examples of Dataflow Jobs.
     ``` cmd
     cat outputs* | more
     ```
-    
-6.	Now, let's run it as a GCP service to benefit from being globally available, managed, and auto scaled by Dataflow. The first step is to get the project ID and save it to an environment variable (**$PROJECT**). (**Note**: the variable is temporally and has to be created if the console or the session is terminated)
+
+  	Note: you can use this local execution to debug the pipeline.
+  	
+7.	Now, let's run it as a GCP service to benefit from being globally available, managed, and auto-scaled by Dataflow. The first step is to get the project ID and save it to an environment variable (**$PROJECT**). (**Note**: the variable is also temporally and needs to be recreated if the console or the session is terminated)
     
     ``` cmd
     PROJECT=$(gcloud config list project --format "value(core.project)")
     echo $PROJECT
     ```
     
-7.	As the input and output pathes should be globally accessed files, a folder created in Google Cloud Storage is needed to be accessed by the Dataflow service. Google Cloud Storage that acts as a File System is called Bucket. The following steps will lead you to create a Bucket.
+8.	As the input and output pathes should be globally accessed files, a folder created in Google Cloud Storage is needed to be accessed by the Dataflow service. Google Cloud Storage that acts as a File System is called Bucket. The following steps will lead you to create a Bucket.
     
     a) Search for **Buckets**
 
@@ -134,7 +136,7 @@ Now, we will go through four examples of Dataflow Jobs.
     ```
 
     ![](images/df14.jpg)
-8.	To run the pipeline using DataFlow, run the following command, 
+9.	To run the pipeline using DataFlow, run the following command, 
     
     ``` cmd 
     python wordcount.py \
