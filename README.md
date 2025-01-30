@@ -1,4 +1,3 @@
-# SOFE4630U-MS2
 # Milestone 3: Data Processing Service (Dataflow)
 
 ##  Repository: 
