@@ -20,7 +20,7 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
     
     ![](images/df1.jpg)
    
-3. Then click **Enable** and Wait until the GCP get the service enabled for you.
+3. Click **Enable** and Wait until the GCP gets the service enabled for you.
     
     ![](images/df2.jpg)
    
