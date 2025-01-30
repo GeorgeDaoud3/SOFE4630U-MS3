@@ -48,10 +48,10 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
 
    **Note**: this is a temporary installation into the GCP console. The GCP will be reset when the session expires, causing the temporary installations to be lost.
 
-Now, we will go throught four example of Dataflow Jobs.
+Now, we will go through four examples of Dataflow Jobs.
 
 ## 1. Running the wordcount Example
-1.	After installing the **apache-beam[gcp]** library, a set of examples can be accessed from the Python library folder. The following command will search for the file containing the famous **wordcount** examples within any subdirectory of the home directory (**~**) and print it.
+1.	After installing the **apache-beam[gcp]** library, Dataflow examples can be accessed from the Python library folder. The following command will search for the file containing the famous **wordcount** examples within any subdirectory of the home directory (**~**) and print it.
 
     ``` cmd
     find ~ -name 'wordcount.py'
