@@ -69,7 +69,7 @@ Now, we will go through four examples of Dataflow Jobs.
 
     ![](images/df8.jpg)
    
-4.	The pipeline is described from lines 87 to 106. It's instructions that will be given to a worker to execute. The dataflow will convert each stage into a function and associate a worker node to run it. The number of workers can be scaled by dataflow to satisfy suitable throughput demands.
+4.	The Dataflow pipeline is described from lines 87 to 106. It's instructions that will be given to a worker to execute. The dataflow will convert each stage into a function and associate a worker node to run it. The number of workers can be scaled by dataflow to satisfy suitable throughput demands.
     * Line 87 defines the root of the processing as a Python variable **p**.
     * The first stage inserted after **p** (using **|** operator) is given in line 90. It's called **Read**, which runs a built-in function to read a text file. Note that when executed, the output will be a list of lines (strings). Note also that the pipeline till the first stage is saved into a Python variable named **line**.
     * The statements from lines 92 to 96 add three consequent stages. 
