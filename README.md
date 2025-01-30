@@ -6,7 +6,7 @@
 ## Objective:
 1. Get familiar with Dataflow.
 2. Understand MapReduce patterns.
-3. Run batch and Stream Processing examples over MNIST dataset.
+3. Run batch and Stream Processing examples over the MNIST dataset.
 
 ## Dataflow and a Simple Map Reduce Example:
 In this section, you will learn about Dataflow, MapReduce pattern, and a word count as a MapReduce example. 
