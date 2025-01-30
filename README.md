@@ -32,7 +32,7 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
     
     ![](images/df4.jpg)
 
-6. As the service name is a global identifier, it’s a good practice to use the project id as a prefix as **ProjectID-DFSA**, the project ID can be copied from the console.
+6. As the service name is a global identifier, it’s a good practice to use the project id as a prefix as **ProjectID-DFSA**; the project ID can be copied from the console.
     
     ![](images/df5.jpg)
 
