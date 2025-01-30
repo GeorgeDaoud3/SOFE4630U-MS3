@@ -24,7 +24,7 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
     
     ![](images/df2.jpg)
    
-4. To grant privileges for you project to use Dataflow, search for **Service Accounts**.
+4. To grant privileges for your project to use Dataflow, search for **Service Accounts**.
     
     ![](images/df3.jpg)
 
