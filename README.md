@@ -71,9 +71,10 @@ Now, we will go through four examples of Dataflow Jobs.
    
 4.	The Dataflow pipeline is described from lines 87 to 106. It's instructions that will be given to a worker to execute. The dataflow will convert each stage into a function and associate a worker node to run it. The number of workers can be scaled by dataflow to satisfy suitable throughput demands.
     * Line 87 defines the root of the processing as a Python variable **p**.
-    * The first stage inserted after **p** (using **|** operator) is given in line 90. It's called **Read**, which runs a built-in function to read a text file. Note that when executed, the output will be a list of lines (strings). Note also that the pipeline till the first stage is saved into a Python variable named **line**.
-    * The statements from lines 92 to 96 add three consequent stages. 
-        * The first is called **Split** that splits each line into list of words using a custom class implemented in lines 50:63. 
+              The first stage inserted after p (using the | operator) is given in line 90. It's called     Read, which runs a built-in function to read a text file. Note that the output will be a list of lines (strings) when executed. Note also that the pipeline till the first stage is saved into a Python variable named line.
+    * The first stage inserted after **p** (using the **|** operator) is given in line 90. It's called **Read**, which runs a built-in function to read a text file. Note the output of this stage will be a list of lines (strings). Note also that until the first stage, the pipeline is saved into a Python variable named **line**.
+    * The statements from lines 92 to 96 add three consequent stages.
+        * The first is called **Split**, which splits each line into a list of words using a custom class implemented in lines 50:63. 
         * The second is called **PairWithOne** that converts each word into a key/value pair which the key is the word and the value is 1. This stage is used a inline function that takes a word **x** and return the tuple **(x,1)**. 
         * The first two stages are Map operations which takes a single input and produce a single or multiple outputs.
         * The third stage is a Reduce stage that will combine tuples having the same key (word) and then apply the **sum** function over the values to generate a new tuple of a word as a key and the count as the value. 
