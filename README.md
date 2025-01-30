@@ -161,7 +161,7 @@ Now, we will go through four examples of Dataflow Jobs.
 
 ## 2. Running the wordcount2 Example
 
-1.	In the GitHub repository, there is also an upgrade to the wordcount script under the name of (wordcount2.py)[/wordcount/wordcount2.py).
+1.	In the GitHub repository, there is also an upgrade to the wordcount script under the name of [wordcount2.py](/wordcount/wordcount2.py).
   
 3.	Make sure that the **PROJECT** and **BUCKET** environment variables are still existing. Then, clone the repository and run the updated script. Try to understand its function.
     ```cmd 
