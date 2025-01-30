@@ -149,7 +149,7 @@ Now, we will go through four examples of Dataflow Jobs.
       --experiment use_unsupported_python_version
     ```
     
-    Some of the command arguments are needed by Dataflow to process the pipeline while others as input and output are used by the **wordcount** code to generate a customized pipeline. It will take minutes for Dataflow to generate worker nodes, configure them, execute the pipeline, and finally it will display **JOB_STATE_DONE**.
+    Some of the command arguments are needed by Dataflow to process the pipeline while others as input and output are used by the **wordcount** code to generate a customized pipeline. It will take **several minutes** for Dataflow to generate worker nodes, configure them, execute the pipeline, and finally it will display **JOB_STATE_DONE**.
 
     ![](images/df14a.jpg)
   	
