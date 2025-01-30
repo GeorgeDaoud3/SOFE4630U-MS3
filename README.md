@@ -65,7 +65,7 @@ Now, we will go through four examples of Dataflow Jobs.
     
     ![](images/df7.jpg)
 
-3. Open the file using the text editor. Now, let's try to understand the Python code. The user can send arguments to customize the processing. The first step is to parse those arguments. Lines 69 to 73 define the first argument, which will be set in the calling command using the option **--input**. It's an optional argument; if not given, it will have the default value in line 72. The second argument is set using the **--output** option. It's required (not optional); thus, no default value is needed. After describing the arguments, line 79 will parse the arguments and return a dictionary (**known_args**) with two keys named by the **dest** parameter of the parsed arguments (**input** and **output**)
+3. Open the file using the text editor. Let's go through the wordcount.py script. As the user can send arguments to customize the processing, the first step is to parse those arguments. Thus, lines 69 to 73 define the first argument, which will be set in the calling command using the option **--input**. It's an optional argument; if not given, it will have the default value in line 72. The second argument is set using the **--output** option. It's required (not optional); thus, no default value is needed. After describing the arguments, line 79 will parse the arguments and return a dictionary (**known_args**) with two keys named by the **dest** parameter of the parsed arguments (**input** and **output**)
 
     ![](images/df8.jpg)
    
