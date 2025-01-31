@@ -48,7 +48,7 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
 
    **Note**: this is a temporary installation into the GCP console. The GCP will be reset when the session expires, causing the temporary installations to be lost.
 
-Now, we will go through four examples of Dataflow Jobs.
+Now, we will go through five examples of Dataflow Jobs.
 
 ## 1. Running the wordcount Example
 1.	After installing the **apache-beam[gcp]** library, Dataflow examples can be accessed from the Python library folder. The following command will search for the file containing the famous **wordcount** examples within any subdirectory of the home directory (**~**) and print it.
@@ -157,12 +157,42 @@ Now, we will go through four examples of Dataflow Jobs.
     
     ![](images/df15.jpg)
 
-11. Go to the bucket created in step 7 and open the file(s) started by the prefix **outputs** within a folder named **result**. Download the file to read it.
+11. Go to the bucket created in step 7 and open the file(s) started by the prefix **outputs** within a folder named **result**. You can download the file to read it.
 
 ## 2. Running the wordcount2 Example
 
-1.	In the GitHub repository, there is also an upgrade to the wordcount script under the name of [wordcount2.py](/wordcount/wordcount2.py).
-  
+1. In the GitHub repository, there is also an upgrade to the wordcount script under the name of [wordcount2.py](/wordcount/wordcount2.py).
+
+2. Before running the Dataflow job, let's examine the updates in the script
+   * Lines 71-75: another argument for the job is defined under the name **output2**.
+     
+     ![argument parser for wordcount2.py](images/wc2_1.jpg)
+     
+   * Line 84: defines the root of the Dataflow pipeline
+   * Line 87: reads the file referenced by the **input** argument
+   * Line 91: Split the file into words.
+   * Line 92: Convert each work to lowercase.
+   * All those operations are store under the name **words**.
+     
+     ![First stage of the Dataflow job of wordcount2.py](images/wc2_2.jpg)
+     
+   * Lines 99-105: branches after the **words** stage
+   * Line 100: filters out all the words that don't satisfy the condition of starting with letters from a to f.
+   * Line 101: generate a key/value pairs by associated each word with the count 1
+   * Line 102: group by the key (words) and sum the count.
+   * Line 104: convert the key/value tuple into a string
+   * Line 105 save the strings into the text file referenced by the argument **output**.
+     
+     ![a branch as the second stage of the Dataflow job of wordcount2.py](images/wc2_3.jpg)
+
+   * Lines 107-111: another branch starts also after the **words** stage. Thus, this branch will run in parallel (form a fork) with the branch described in lines 99-105.
+   * Line 108: get only the first letter from each word. 
+   * Line 109: generate a key/value pairs by associated each the starting letter in a word with the count 1
+   * Line 110: group by the key (letters) and sum the count.
+   * Line 111: convert the key/value tuple into a string and saves them into the text file referenced by the argument **output2**.
+     
+     ![the other branch as the second stage of the Dataflow job of wordcount2.py](images/wc2_4.jpg)
+     
 3.	Make sure that the **PROJECT** and **BUCKET** environment variables are still existing. Then, clone the repository and run the updated script. Try to understand its function.
     ```cmd 
     cd ~
@@ -178,6 +208,13 @@ Now, we will go through four examples of Dataflow Jobs.
       --output2 $BUCKET/result/outputs2 \
       --experiment use_unsupported_python_version
     ```
+
+4. The stages of the dataflow job is shown in the following figure
+
+   ![the stages of the dataflow job of wordcount2.py](images/wc2_5.jpg)
+
+5. Go to the bucket created and open the file(s) started by the prefix **outputs** and **outputs2** within a folder named **result**. You can download the file to read it.
+    
 ## MNIST dataset
 The Modified National Institute of Standards and Technology (**MNIST**) dataset consists of handwritten digits that is commonly used for machine learning and image processing applications. Each digit is represented as a 28*28 gray image. The value of pixels ranges from 0 (white) to 255 (black) as shown in the following image. The values are normalized to 1 and converted from a matrix to a vector and stored as string. The string is fed to a Machine Learning (ML) model that estimate the probability that the image represents one of the ten digits. The ML model is implemented using a python library called **TensorFlow**. The detail of the model is behind the scope of this course. What you want to know is that the model parameters and the MNIST CSV are saved in a folder **/MNIST/data** in the repository.
 
