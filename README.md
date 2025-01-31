@@ -198,7 +198,7 @@ Now, we will go through five examples of Dataflow Jobs.
     ```cmd 
     cd ~
     git clone https://github.com/GeorgeDaoud3/SOFE4630U-MS3.git
-    cd ~/SOFE4630U-MS2/wordcount
+    cd ~/SOFE4630U-MS3/wordcount
     PROJECT=$(gcloud config list project --format "value(core.project)")
     BUCKET=gs://$PROJECT-bucket
     python wordcount2.py \
@@ -234,7 +234,7 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
 2. Go to the bucket created before and upload the model folder from the **/mnist/model** folder from the repository.
 3.	Make sure that the Project and Bucket environment variables are already defined then run the DataFlow job using the following commands. 
     ``` cmd
-    cd ~/SOFE4630U-MS2/mnist
+    cd ~/SOFE4630U-MS3/mnist
     python mnistBQ.py \
       --runner DataflowRunner \
       --project $PROJECT \
@@ -282,7 +282,7 @@ In this example, the data will be read and store into Google Pub/Sub. In the pre
 2. Create two topics **mnist_image**, and **mnist_predict** at **Google Pub/Sub**.
 3. Run the Data flow job that reads JSON objects from the **mnist_image** topic, apply it to the ML model, send the prediction results via **mnist_predict** topic.
     ``` cmd
-    cd ~/SOFE4630U-MS2/mnist
+    cd ~/SOFE4630U-MS3/mnist
     PROJECT=$(gcloud config list project --format "value(core.project)")
     BUCKET=gs://$PROJECT-bucket
     python mnistPubSub.py \
