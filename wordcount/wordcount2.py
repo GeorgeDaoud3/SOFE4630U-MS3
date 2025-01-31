@@ -91,23 +91,23 @@ def run(argv=None, save_main_session=True):
         | 'Split' >> (beam.ParDo(WordExtractingDoFn()).with_output_types(str))
         | 'lowerCase'>> beam.Map(lambda x: x.lower())
         )
+    
+    # Format the counts into a PCollection of strings.
+    def format_result(word, count):
+        return '%s: %d' % (word, count)
+
     counts=(words 
         | 'filter' >> beam.Filter(lambda x: x[0]>='a' and x[0]<='f')
         | 'PairWithOne' >> beam.Map(lambda x: (x, 1))
         | 'GroupAndSum' >> beam.CombinePerKey(sum))
+    # save to a text file
+    output = counts | 'Format' >> beam.MapTuple(format_result)
+    output | 'Write' >> WriteToText(known_args.output)
+    
     counts2=(words 
         | 'firstChar' >> beam.Map(lambda x: x[0])
         | 'PairWithOne2' >> beam.Map(lambda x: (x, 1))
         | 'GroupAndSum2' >> beam.CombinePerKey(sum))
-    # Format the counts into a PCollection of strings.
-    def format_result(word, count):
-      return '%s: %d' % (word, count)
-
-    output = counts | 'Format' >> beam.MapTuple(format_result)
-
-    # Write the output using a "Write" transform that has side effects.
-    # pylint: disable=expression-not-assigned
-    output | 'Write' >> WriteToText(known_args.output)
     counts2 | 'Format2' >> beam.MapTuple(format_result) | 'Write2' >> WriteToText(known_args.output2)
 
 
