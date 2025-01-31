@@ -284,9 +284,8 @@ In this example, the data will be read and store into Google Pub/Sub as shown in
 
 ![Stream Processing using Dataflow](images/st_1.jpg)
     
-1. Go to the **service account** created before and generate a key in JSON format.
-2. Create two topics **mnist_image**, and **mnist_predict** at **Google Pub/Sub**.
-3. Run the Data flow job that reads JSON objects from the **mnist_image** topic, apply it to the ML model, send the prediction results via **mnist_predict** topic.
+1. Create two topics **mnist_image**, and **mnist_predict** at **Google Pub/Sub**.
+2. Run the Data flow job that reads JSON objects from the **mnist_image** topic, apply it to the ML model, send the prediction results via **mnist_predict** topic.
     ``` cmd
     cd ~/SOFE4630U-MS3/mnist
     PROJECT=$(gcloud config list project --format "value(core.project)")
@@ -306,7 +305,7 @@ In this example, the data will be read and store into Google Pub/Sub as shown in
     ````
     A new arguement **streaming** is used here to mark the pipeline as streaming process. So it will run forever until you manually stop it.
 
-4. The job pipeline consists of five stages:
+3. The job pipeline consists of five stages:
 
     a.	**Read from Pub/Sub**: reads messages from the input topic.
 
