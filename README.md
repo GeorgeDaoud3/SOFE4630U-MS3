@@ -235,6 +235,8 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
 4.	Make sure that the Project and Bucket environment variables are already defined then run the DataFlow job using the following commands. 
     ``` cmd
     cd ~/SOFE4630U-MS3/mnist
+    PROJECT=$(gcloud config list project --format "value(core.project)")
+    BUCKET=gs://$PROJECT-bucket
     python mnistBQ.py \
       --runner DataflowRunner \
       --project $PROJECT \
