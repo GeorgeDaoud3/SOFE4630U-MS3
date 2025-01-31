@@ -225,14 +225,14 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
 
 ## 3. Batch Processing of the MNIST Dataset
 
-**BigQuery** will be used to save the CSV file containing the MNIST dataset as it can be accessed globally by the Dataflow workers. BigQuery is a cloud-based serverless data warehouse that supports SQL. First, a dataset will be created within the **BigQuerry** under the name **MNIST**. An **Images** table will be created within the dataset. The CSV file will be uploaded to fill the table. The Dataflow job will query each record from the table, run the ML model on each image, and produce a prediction of the handwritten digit. Finally, The Job will store the results in another table, **Predict**, within the same dataset.
+**BigQuery** will be used to save the CSV file containing the MNIST dataset, as it can be accessed globally by the Dataflow workers. BigQuery is a cloud-based serverless data warehouse that supports SQL. First, a dataset, **MNIST**, will be created within the BigQuery. A table, **Images**, will be created within the dataset. The CSV file will be uploaded to fill the table. The Dataflow job will query each record from the table, run the ML model on each image, and produce a prediction of the handwritten digit. Finally, The Job will store the results in another table, **Predict**, within the same dataset.
 
-1. Search for **BigQuery**, Within the current project. create a dataset and name it **MNIST**, create a table, name it **Images** and upload the **mnist/data/mnist.csv** file from the repository (you need to download it first to your computer). It may take several minutes to create the dataset and the table.
-    
+1. Search for **BigQuery** Within the current project. Create a dataset and name it **MNIST**, create a table, name it **Images**, and upload the **mnist/data/mnist.csv** file from the repository (you need to download it first to your computer). It may take several minutes to create the dataset and the table.
+   
     ![](images/df17.jpg)
     
 2. Go to the bucket created before and upload the model folder from the **/mnist/model** folder from the repository.
-3.	Make sure that the Project and Bucket environment variables are already defined then run the DataFlow job using the following commands. 
+4.	Make sure that the Project and Bucket environment variables are already defined then run the DataFlow job using the following commands. 
     ``` cmd
     cd ~/SOFE4630U-MS3/mnist
     python mnistBQ.py \
@@ -260,7 +260,7 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
     
     ![](images/df18.jpg)
     
-4.	As shown in the following image, the pipeline consists of 3 stages:
+5.	As shown in the following image, the pipeline consists of 3 stages:
     
     a.	**ReadFromBQ**: that reads a BigQuery table.
     
@@ -270,7 +270,7 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
     
     ![](images/df19.jpg)
   	
-5.	Now, a new table is created in the MNIST dataset, let’s display its content.
+6.	Now, a new table is created in the MNIST dataset, let’s display its content.
 
     ![](images/df20.jpg)
 
