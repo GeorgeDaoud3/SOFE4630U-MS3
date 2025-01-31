@@ -232,7 +232,7 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
     ![](images/df17.jpg)
     
 2. Go to the bucket created before and upload the model folder from the **/mnist/model** folder from the repository.
-4.	Make sure that the Project and Bucket environment variables are already defined then run the DataFlow job using the following commands. 
+3.	3.	Ensure the Project and Bucket environment variables are still defined. Then, run the DataFlow job using the following commands. 
     ``` cmd
     cd ~/SOFE4630U-MS3/mnist
     PROJECT=$(gcloud config list project --format "value(core.project)")
@@ -250,9 +250,9 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
       --experiment use_unsupported_python_version
     ```
     
-    Three arguments are used by the python code to create a customized pipeline.
+    The Python code uses three arguments to create a customized pipeline:
     
-    a)	**input** that specify the table name to read the data from which follows the following pattern, **ProjectID.Dataset.Table**
+    a)	**input** that specifies the table name from which to read the data, which follows the following pattern: **ProjectID.Dataset.Table**
     
     b)	**output** that specifies the table name to be created to store the predicted values.
     
@@ -262,19 +262,21 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
     
     ![](images/df18.jpg)
     
-5.	As shown in the following image, the pipeline consists of 3 stages:
+4.	As shown in the following image, the pipeline consists of 3 stages:
     
     a.	**ReadFromBQ**: that reads a BigQuery table.
     
-    b.	**Prediction**: that call the process function defined within the PredictDoFn class to process each record (row) and returns a dictionary that contains the following fields; **ID**, **P0**,…,**P9** where **ID** is the same as the record ID of the input table, **P0** is the probability that the image represent the digit 0,… . Note that the **@singleton** annotation in line 36, will prevent the model creation to just once which will make the process function run fast. Also, the second argument (**known_args.model**) is in line 86 will be the last argument send to the process function (**checkpoint**).
+    b.	**Prediction**: that calls the process function defined within the PredictDoFn class to process each record (row) and returns a dictionary that contains the following fields; **ID**, **P0**, …, **P9** where **ID** is the same as the record ID of the input table, **P0** is the probability that the image represents the digit 0,… . Note that the **@singleton** annotation in line 36 will prevent the model creation to just once, which will make the process function run fast. Also, the second argument (**known_args.model**) is in line 86 ndawill be the last argument sent to the process function (**checkpoint**).
     
-    c.	**WriteToBQ**: that writes the prediction output (**ID**, **P0**,…,**P9**) into another BigQuery table. The table will be created if no exist and will be truncated if exist.
+    c.	**WriteToBQ**: that writes the prediction output (**ID**, **P0**, …, **P9**) into another BigQuery table. The table will be created if it does not exist and will be truncated if it exists.
     
     ![](images/df19.jpg)
   	
-6.	Now, a new table is created in the MNIST dataset, let’s display its content.
+5.	A new table has been created in the MNIST dataset. To display its content, follow the steps in the following figure.
 
     ![](images/df20.jpg)
+
+**Note**: The initialization of the Dataflow job takes a lot of time because of the setup.py file. A fast alterantive is to build a docker image and use it for the job workers. More information can be found in [Build custom container images for Dataflow](https://cloud.google.com/dataflow/docs/guides/build-container-image#python)
 
 ## 4. Stream Processing the MNIST Dataset
 
