@@ -6,9 +6,14 @@ from google.cloud import pubsub_v1    #pip install google-cloud-pubsub  ##to ins
 import time
 import json;
 import io;
+import glob
 
-# TODO : fill the credential json and project id 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=""
+# Search the current directory for the JSON file (including the service account key) 
+# to set the GOOGLE_APPLICATION_CREDENTIALS environment variable.
+files=glob.glob("*.json")
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=files[0];
+
+# TODO : fill project id 
 project_id = ""
 topic_id = "mnist_image"
 
