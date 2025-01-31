@@ -197,7 +197,7 @@ Now, we will go through five examples of Dataflow Jobs.
 3.	Make sure that the **PROJECT** and **BUCKET** environment variables remain. Then, clone the repository and run the updated script. Try to understand its function.
     ```cmd 
     cd ~
-    git clone https://github.com/GeorgeDaoud3/SOFE4630U-MS2.git
+    git clone https://github.com/GeorgeDaoud3/SOFE4630U-MS3.git
     cd ~/SOFE4630U-MS2/wordcount
     PROJECT=$(gcloud config list project --format "value(core.project)")
     BUCKET=gs://$PROJECT-bucket
