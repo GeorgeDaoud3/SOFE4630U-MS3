@@ -136,6 +136,7 @@ Now, we will go through five examples of Dataflow Jobs.
     ```
 
     ![](images/df14.jpg)
+
 9.	To run the pipeline using DataFlow, run the following command, 
     
     ``` cmd 
@@ -161,7 +162,7 @@ Now, we will go through five examples of Dataflow Jobs.
 
 ## 2. Running the wordcount2 Example
 
-1. In the GitHub repository, there is also an upgrade to the wordcount script under the name of [wordcount2.py](/wordcount/wordcount2.py).
+1. In the GitHub repository, there is an upgrade to the wordcount script, [wordcount2.py](/wordcount/wordcount2.py).
 
 2. Before running the Dataflow job, let's examine the updates in the script
    * Lines 71-75: another argument for the job is defined under the name **output2**.
@@ -172,28 +173,28 @@ Now, we will go through five examples of Dataflow Jobs.
    * Line 87: reads the file referenced by the **input** argument
    * Line 91: Split the file into words.
    * Line 92: Convert each work to lowercase.
-   * All those operations are store under the name **words**.
+   * All those operations are stored under the name **words**.
      
      ![First stage of the Dataflow job of wordcount2.py](images/wc2_2.jpg)
      
    * Lines 99-105: branches after the **words** stage
    * Line 100: filters out all the words that don't satisfy the condition of starting with letters from a to f.
-   * Line 101: generate a key/value pairs by associated each word with the count 1
-   * Line 102: group by the key (words) and sum the count.
-   * Line 104: convert the key/value tuple into a string
-   * Line 105 save the strings into the text file referenced by the argument **output**.
+   * Line 101: generates key/value pairs by associating each word with the count 1
+   * Line 102: groups by the key (words) and sum the count.
+   * Line 104: converts the key/value tuple into a string
+   * Line 105 saves the strings into the text file referenced by the argument **output**.
      
      ![a branch as the second stage of the Dataflow job of wordcount2.py](images/wc2_3.jpg)
 
-   * Lines 107-111: another branch starts also after the **words** stage. Thus, this branch will run in parallel (form a fork) with the branch described in lines 99-105.
-   * Line 108: get only the first letter from each word. 
-   * Line 109: generate a key/value pairs by associated each the starting letter in a word with the count 1
-   * Line 110: group by the key (letters) and sum the count.
-   * Line 111: convert the key/value tuple into a string and saves them into the text file referenced by the argument **output2**.
+   * Lines 107-111: another branch also starts after the **words** stage. Thus, this branch will run parallel (form a fork) with the branch described in lines 99-105.
+   * Line 108: gets only the first letter from each word. 
+   * Line 109: generates key/value pairs by associating each the starting letter in a word with the count 1
+   * Line 110: groups by the key (letters) and sum the count.
+   * Line 111: converts each key/value tuple into a string and saves it into the text file referenced by the argument **output2**.
      
      ![the other branch as the second stage of the Dataflow job of wordcount2.py](images/wc2_4.jpg)
      
-3.	Make sure that the **PROJECT** and **BUCKET** environment variables are still existing. Then, clone the repository and run the updated script. Try to understand its function.
+3.	Make sure that the **PROJECT** and **BUCKET** environment variables remain. Then, clone the repository and run the updated script. Try to understand its function.
     ```cmd 
     cd ~
     git clone https://github.com/GeorgeDaoud3/SOFE4630U-MS2.git
@@ -209,7 +210,7 @@ Now, we will go through five examples of Dataflow Jobs.
       --experiment use_unsupported_python_version
     ```
 
-4. The stages of the dataflow job is shown in the following figure
+4. The stages of the dataflow job are shown in the following figure
 
    ![the stages of the dataflow job of wordcount2.py](images/wc2_5.jpg)
 
