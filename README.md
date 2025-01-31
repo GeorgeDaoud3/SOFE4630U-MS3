@@ -280,12 +280,12 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
 
 ## 4. Stream Processing the MNIST Dataset
 
-In this example, the data will be read and store into Google Pub/Sub as shown in the following figure. Because this is a streaming process, it will keep running until you manually stop it.
+In this example, the data will be read and stored in Google Pub/Sub, as shown in the following figure. Because this is a streaming process, it will keep running until you manually stop it.
 
 ![Stream Processing using Dataflow](images/st_1.jpg)
     
 1. Create two topics **mnist_image**, and **mnist_predict** at **Google Pub/Sub**.
-2. Run the Data flow job that reads JSON objects from the **mnist_image** topic, apply it to the ML model, send the prediction results via **mnist_predict** topic.
+2. Run the Data flow job that reads JSON objects from the **mnist_image** topic, apply it to the ML model, and send the prediction results via the **mnist_predict** topic.
     ``` cmd
     cd ~/SOFE4630U-MS3/mnist
     PROJECT=$(gcloud config list project --format "value(core.project)")
@@ -303,33 +303,36 @@ In this example, the data will be read and store into Google Pub/Sub as shown in
       --experiment use_unsupported_python_version \
       --streaming
     ````
-    A new arguement **streaming** is used here to mark the pipeline as streaming process. So it will run forever until you manually stop it.
+
+   **Note**: A new argument **streaming** is used here to mark the pipeline as a streaming process. So it will run forever until you manually stop it.
 
 3. The job pipeline consists of five stages:
 
     a.	**Read from Pub/Sub**: reads messages from the input topic.
 
-    b.	**toDict**: Pub/Sub is agnostic to the type of the message. It’s handled as a stream of bytes. To process the message, The stage deserialize the messagefrom bytes to its original format (JSON).
+    b.	**toDict**: Pub/Sub is agnostic to the message type. The message is handled as a stream of bytes. To process the message, The stage deserializes the message from bytes to its original format (JSON).
 
     c.	**Prediction**: the same as the Prediction in the BigQuery example.
 
-    d.	**To byte**: Serialize the predicted output to bytes.
+    d.	**To byte**: serializes the predicted output to bytes.
     
-    e.	**To Pub/sub**: send the serialized prediction int the output topic.
+    e.	**To Pub/sub**: sends the serialized prediction to the output topic.
     
     ![](images/df21.jpg)
-    
-5. In your computer, Edit lines 11, 12, and 13 in the file **/mnist/data/producerMnistPubSup.py** to have the path of the JSON, Project ID, and the topic id of mnist_image. The file represent a producer that will send any message consists of a single mnist record each second (**Similar tothe design part in the first milestone**).
 
-6. In your computer, Edit lines 4, 5, and 6 in the file **/mnist/data/consumerMnistPubSup.py** to have the path of the JSON, Project ID, and mnist_predict subscription id. The file represent a consumer that will read any message from the mnist_predict topic and display it (**Similar to the design part in the first milestone**).
+4. Download the [/mnist/data/](/mnist/data/) folder into your computer and copy the service account key that has the Pub/Sub roles created in the first milestone to the folder.
+
+5. In your computer, set the project ID in line 17 in **/mnist/data/producerMnistPubSup.py**. The script creates a producer that sends each record from the mnist dataset as a message each 0.1 second. Run the **producerMnistPubSup.py** script.
+
+6. In your computer, set the project ID in line 11 in **/mnist/data/consumerMnistPubSup.py**. The script consumes message from the mnist_predict topic, converts it to JSOn and displays it. Run the script. You should see the predicition of the MNIST images printing into the screen.
 
 
-    It may take minutes until every things are setup. The whole example can be summarized as:
-    a) The producer will produce to the mnist_image topic.  ( your local machine)
-    b) Data flow job will read messages, process them, and send them to the mnist_predict topic ( over GCP)
-    a) The consumer will consume every result from the mnist_predict topic and display it.  ( your local machine)
+It may take minutes until every things are setup. The whole example can be summarized as:
+    * The producer will produce to the mnist_image topic.  ( your local machine)
+    * Data flow job will read messages, process them, and send them to the mnist_predict topic ( in GCP)
+    * The consumer will consume every result from the mnist_predict topic and display it.  ( your local machine)
 
-7. Note, As the Dataflow job is marked as streaming, it will be still running. To stop it, go to the Dataflow job, and stop it manually.
+7. **Note**, as the Dataflow job is marked as streaming, it will continue running. To stop it, go to the Dataflow job, and stop it manually.
    
     ![](images/df22.jpg)
 
