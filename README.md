@@ -48,7 +48,7 @@ In this section, you will learn about Dataflow, MapReduce pattern, and a word co
 
    **Note**: this is a temporary installation into the GCP console. The GCP will be reset when the session expires, causing the temporary installations to be lost.
 
-Now, we will go through five examples of Dataflow Jobs.
+Now, we will go through four examples of Dataflow Jobs.
 
 ## 1. Running the wordcount Example
 1.	After installing the **apache-beam[gcp]** library, Dataflow examples can be accessed from the Python library folder. The following command will search for the file containing the famous **wordcount** examples within any subdirectory of the home directory (**~**) and print it.
@@ -276,12 +276,14 @@ The Modified National Institute of Standards and Technology (**MNIST**) dataset 
 
     ![](images/df20.jpg)
 
-**Note**: The initialization of the Dataflow job takes a lot of time because of the setup.py file. A fast alterantive is to build a docker image and use it for the job workers. More information can be found in [Build custom container images for Dataflow](https://cloud.google.com/dataflow/docs/guides/build-container-image#python)
+**Note**: The initialization of the Dataflow job takes a lot of time because of the setup.py file. A fast alterantive is to build a docker image and use it for the job workers. More information can be found in [Build custom container images for Dataflow](https://cloud.google.com/dataflow/docs/guides/build-container-image)
 
 ## 4. Stream Processing the MNIST Dataset
 
-In this example, the data will be read and store into Google Pub/Sub. In the previous milestone, you have already learned how to create a topic in Google Pub/sub, a consumer to read the data, and a producer to send data through the pub/sub. This will be the first streaming process. It will keep running until you manually stop it.
+In this example, the data will be read and store into Google Pub/Sub as shown in the following figure. Because this is a streaming process, it will keep running until you manually stop it.
 
+![Stream Processing using Dataflow](images/st_1.jpg)
+    
 1. Go to the **service account** created before and generate a key in JSON format.
 2. Create two topics **mnist_image**, and **mnist_predict** at **Google Pub/Sub**.
 3. Run the Data flow job that reads JSON objects from the **mnist_image** topic, apply it to the ML model, send the prediction results via **mnist_predict** topic.
@@ -331,18 +333,6 @@ In this example, the data will be read and store into Google Pub/Sub. In the pre
 7. Note, As the Dataflow job is marked as streaming, it will be still running. To stop it, go to the Dataflow job, and stop it manually.
    
     ![](images/df22.jpg)
-
-## 5. 
-In the previous milestone, you have sent the smart meter readings to Google Pub/Sub. It's needed to add a Dataflow job to preprocess the smart meter measurements. The job consists of the following stages
-1. **Read from PubSub**: read the measurement reading .
-2. **Filter**: Eliminate records with missing measurements (containing None). 
-3. **Convert**:  convert  the  pressure  from  kPa  to  psi  and  the  temperature  from  Celsius  to  Fahrenheit using the following equations 
-    
-    𝑃(𝑝𝑠𝑖) = 𝑃(𝑘𝑃𝑎)/6.895
-    
-    𝑇(𝐹) = 𝑇(𝐶)∗1.8+32
-4. **Write to PubSub**: send the measurement back to another topic
- 
 
 
 ## Design
