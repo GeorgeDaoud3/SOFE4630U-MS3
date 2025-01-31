@@ -215,15 +215,16 @@ Now, we will go through five examples of Dataflow Jobs.
 
 5. Go to the bucket created and open the file(s) started by the prefix **outputs** and **outputs2** within a folder named **result**. You can download the file to read it.
     
-## MNIST dataset
-The Modified National Institute of Standards and Technology (**MNIST**) dataset consists of handwritten digits that is commonly used for machine learning and image processing applications. Each digit is represented as a 28*28 gray image. The value of pixels ranges from 0 (white) to 255 (black) as shown in the following image. The values are normalized to 1 and converted from a matrix to a vector and stored as string. The string is fed to a Machine Learning (ML) model that estimate the probability that the image represents one of the ten digits. The ML model is implemented using a python library called **TensorFlow**. The detail of the model is behind the scope of this course. What you want to know is that the model parameters and the MNIST CSV are saved in a folder **/MNIST/data** in the repository.
+## Introduction to The MNIST dataset
+The Modified National Institute of Standards and Technology (**MNIST**) dataset consists of handwritten digits that is commonly used for machine learning and image processing applications. Each digit is represented as a 28*28 gray image. The value of pixels ranges from 0 (white) to 255 (black) as shown in the following image. The values are normalized to 1 and converted from a matrix to a vector and stored as string. The string is fed to a Machine Learning (ML) model that estimate the probability of the digit represented by the image. The ML model is implemented using a python library called **TensorFlow**. The detail of the model is behind the scope of this course. What you want to know is that the model parameters and the MNIST CSV are saved in a folder **/MNIST/data** in the repository.
 
 ![](images/df16.jpg)
 
-## Data flow Processing the MNIST database from BigQuery
-BigQuery is a cloud-based serverless data warehouse that supports SQL. We will use it to store the table containing the MNIST images. Thus, a dataset, namely **MNIST**, will be created within **BigQuerry**. A table, namely **Images**, will be created within the dataset. Then, the CSV file will be uploaded to fill the table. The Dataflow job will query the content of the table, run the ML model on each image, and produce a prediction of the handwritten digit. Finally, The Job will store the results in another table, **Predict**, within the same dataset.
+## 3. Batch Processing of the MNIST Dataset
 
-1. Search for **BigQuery**, Within the current project, create a dataset and name it **MNIST**, create a table, name it **Images** and upload the **mnist/data/mnist.csv** file from the repository (you need to download it first to your computer). It may take several minutes to create the dataset and the table.
+**BigQuery** will be used to save the CSV file containing the MNIST dataset as it can be accessed globally by the Dataflow workers. BigQuery is a cloud-based serverless data warehouse that supports SQL. First, a dataset will be created within the **BigQuerry** under the name **MNIST**. An **Images** table will be created within the dataset. The CSV file will be uploaded to fill the table. The Dataflow job will query each record from the table, run the ML model on each image, and produce a prediction of the handwritten digit. Finally, The Job will store the results in another table, **Predict**, within the same dataset.
+
+1. Search for **BigQuery**, Within the current project. create a dataset and name it **MNIST**, create a table, name it **Images** and upload the **mnist/data/mnist.csv** file from the repository (you need to download it first to your computer). It may take several minutes to create the dataset and the table.
     
     ![](images/df17.jpg)
     
@@ -270,7 +271,7 @@ BigQuery is a cloud-based serverless data warehouse that supports SQL. We will u
 
     ![](images/df20.jpg)
 
-## Data flow Processing the MNIST database from Pub/Sub
+## 4. Stream Processing the MNIST Dataset
 
 In this example, the data will be read and store into Google Pub/Sub. In the previous milestone, you have already learned how to create a topic in Google Pub/sub, a consumer to read the data, and a producer to send data through the pub/sub. This will be the first streaming process. It will keep running until you manually stop it.
 
@@ -323,6 +324,19 @@ In this example, the data will be read and store into Google Pub/Sub. In the pre
 7. Note, As the Dataflow job is marked as streaming, it will be still running. To stop it, go to the Dataflow job, and stop it manually.
    
     ![](images/df22.jpg)
+
+## 5. 
+In the previous milestone, you have sent the smart meter readings to Google Pub/Sub. It's needed to add a Dataflow job to preprocess the smart meter measurements. The job consists of the following stages
+1. **Read from PubSub**: read the measurement reading .
+2. **Filter**: Eliminate records with missing measurements (containing None). 
+3. **Convert**:  convert  the  pressure  from  kPa  to  psi  and  the  temperature  from  Celsius  to  Fahrenheit using the following equations 
+    
+    𝑃(𝑝𝑠𝑖) = 𝑃(𝑘𝑃𝑎)/6.895
+    
+    𝑇(𝐹) = 𝑇(𝐶)∗1.8+32
+4. **Write to PubSub**: send the measurement back to another topic
+ 
+
 
 ## Design
 In the previous milestone, you have sent the smart meter readings to Google Pub/Sub. It's needed to add a Dataflow job to preprocess the smart meter measurements. The job consists of the following stages
