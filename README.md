@@ -199,6 +199,8 @@ Now, we will go through five examples of Dataflow Jobs.
     cd ~
     git clone https://github.com/GeorgeDaoud3/SOFE4630U-MS2.git
     cd ~/SOFE4630U-MS2/wordcount
+    PROJECT=$(gcloud config list project --format "value(core.project)")
+    BUCKET=gs://$PROJECT-bucket
     python wordcount2.py \
       --region northamerica-northeast2 \
       --runner DataflowRunner \
