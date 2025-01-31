@@ -320,19 +320,19 @@ In this example, the data will be read and stored in Google Pub/Sub, as shown in
     
     ![](images/df21.jpg)
 
-4. Download the [/mnist/data/](/mnist/data/) folder into your computer and copy the service account key that has the Pub/Sub roles created in the first milestone to the folder.
+4. Download the [/mnist/data/](/mnist/data/) folder into your computer and copy the service account key with the Pub/Sub roles created in the first milestone to the folder.
 
-5. In your computer, set the project ID in line 17 in **/mnist/data/producerMnistPubSup.py**. The script creates a producer that sends each record from the mnist dataset as a message each 0.1 second. Run the **producerMnistPubSup.py** script.
+5. Set the project ID in line 17 in **/mnist/data/producerMnistPubSup.py** on your computer. The script creates a producer that sends each record from the mnist dataset as a message every 0.1 seconds. Run the **producerMnistPubSup.py** script.
 
-6. In your computer, set the project ID in line 11 in **/mnist/data/consumerMnistPubSup.py**. The script consumes message from the mnist_predict topic, converts it to JSOn and displays it. Run the script. You should see the predicition of the MNIST images printing into the screen.
+6. Set the project ID in line 11 in **/mnist/data/consumerMnistPubSup.py** on your computer. The script consumes messages from the mnist_predict topic, converts them to JSON, and displays them. Run the script. You should start seeing the prediction of the MNIST images printed on the screen.
 
 
-It may take minutes until every things are setup. The whole example can be summarized as:
-    * The producer will produce to the mnist_image topic.  ( your local machine)
-    * Data flow job will read messages, process them, and send them to the mnist_predict topic ( in GCP)
-    * The consumer will consume every result from the mnist_predict topic and display it.  ( your local machine)
+    It may take minutes until everything is set up. The whole example can be summarized as:
+        * The producer produces messages of handwritten digits to the mnist_image topic.  ( your local machine)
+        * The Dataflow job will read messages, process them, and send them to the mnist_predict topic ( in GCP)
+        * The consumer will consume every result from the mnist_predict topic and display it.  ( your local machine)
 
-7. **Note**, as the Dataflow job is marked as streaming, it will continue running. To stop it, go to the Dataflow job, and stop it manually.
+7. **Note** that as the Dataflow job is marked as streaming, it will continue running. To stop it, go to the Dataflow job and stop it manually.
    
     ![](images/df22.jpg)
 
