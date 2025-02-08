@@ -339,10 +339,11 @@ In this example, the data will be read and stored in Google Pub/Sub, as shown in
 
 
 ## Design
-The Design problem is described at [https://github.com/GeorgeDaoud3/SOFE4630U-Design](https://github.com/GeorgeDaoud3/SOFE4630U-Design). You already have implemented the ingestion and storage in the first two milestones. In this mile stone, we will start in the processing part. You are required to implement the [https://github.com/GeorgeDaoud3/SOFE4630U-Design/blob/main/README.md#milestone-3](mile stone 3) part and run it a Dataflow job.
+The Design problem is described at [https://github.com/GeorgeDaoud3/SOFE4630U-Design](https://github.com/GeorgeDaoud3/SOFE4630U-Design). You already have implemented the ingestion and storage in the first two milestones. In this milestone, we will start in the processing part. You are required to implement the [https://github.com/GeorgeDaoud3/SOFE4630U-Design/blob/main/README.md#milestone-3](milestone 3) part and run it a Dataflow job.
  
 ## Deliverables
-1. A report including the four Dataflow examples and description of the implementation of the design part. It should a prove of the success deployment of the dataflow Job as well as some results.
-2. An audible video of about 4 minutes showing the created job and the results of the four examples (wordcount and mnist).
+1. A report including the four Dataflow examples (wordcount and MNIST) and a description of the implementation of the design part. It should include proof of a successful deployment of the dataflow Job and provide some results.
+2. An audible video of about 4 minutes showing the created job and the results of the four examples (wordcount and MNIST).
 3. Another audible video of about 3 minutes showing the design part.
 4. A GitHub link of the code, Dockerfile, and results of the design part.
+1. A report including the four Dataflow examples and a description of the implementation of the design part. It should prove the successful deployment of the dataflow job and provide some results.
