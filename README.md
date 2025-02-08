@@ -337,18 +337,12 @@ In this example, the data will be read and stored in Google Pub/Sub, as shown in
     ![](images/df22.jpg)
 
 
+
 ## Design
-In the previous milestone, you have sent the smart meter readings to Google Pub/Sub. It's needed to add a Dataflow job to preprocess the smart meter measurements. The job consists of the following stages
-1. **Read from PubSub**: read the measurement reading .
-2. **Filter**: Eliminate records with missing measurements (containing None). 
-3. **Convert**:  convert  the  pressure  from  kPa  to  psi  and  the  temperature  from  Celsius  to  Fahrenheit using the following equations 
-    
-    𝑃(𝑝𝑠𝑖) = 𝑃(𝑘𝑃𝑎)/6.895
-    
-    𝑇(𝐹) = 𝑇(𝐶)∗1.8+32
-4. **Write to PubSub**: send the measurement back to another topic
+The Design problem is described at [https://github.com/GeorgeDaoud3/SOFE4630U-Design](https://github.com/GeorgeDaoud3/SOFE4630U-Design). You already have implemented the ingestion and storage in the first two milestones. In this mile stone, we will start in the processing part. You are required to implement the [https://github.com/GeorgeDaoud3/SOFE4630U-Design/blob/main/README.md#milestone-3](mile stone 3) part and run it a Dataflow job.
  
 ## Deliverables
-1. A report that includes the discription of the second wordcount example (**wordcount2.py**) and the pipeline you used in the Design section. It should have snapshots of the job and results of the four examples (wordcount and mnist) as well as the design part.
+1. A report including the four Dataflow examples and description of the implementation of the design part. It should a prove of the success deployment of the dataflow Job as well as some results.
 2. An audible video of about 4 minutes showing the created job and the results of the four examples (wordcount and mnist).
 3. Another audible video of about 3 minutes showing the design part.
+4. A GitHub link of the code, Dockerfile, and results of the design part.
