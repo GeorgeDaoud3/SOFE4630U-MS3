@@ -346,4 +346,5 @@ The Design problem is described at [https://github.com/GeorgeDaoud3/SOFE4630U-De
 2. An audible video of about 4 minutes showing the created job and the results of the four examples (wordcount and MNIST).
 3. Another audible video of about 3 minutes showing the design part.
 4. A GitHub link of the code, Dockerfile, and results of the design part.
-1. A report including the four Dataflow examples and a description of the implementation of the design part. It should prove the successful deployment of the dataflow job and provide some results.
+
+**Note**: you will represent the Design part of this milestone in the lecture.
